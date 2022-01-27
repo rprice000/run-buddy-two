@@ -1,5 +1,5 @@
 // index.js code
 const typeDefs = require('./typeDefs');
-const resolvers = require('./revolvers.js');
+const resolvers = require('./resolvers.js');
 
 module.exports = { typeDefs, resolvers };

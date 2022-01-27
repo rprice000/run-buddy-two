@@ -26,7 +26,7 @@ Your project should fulfill the following requirements:
 
 - Have a high-quality README (with unique name, description, technologies used, screenshot, and link to deployed application).
 
-
+============ BONUS =====================
 - Uses a web manifest
 
 - Uses a service worker for offline functionality
