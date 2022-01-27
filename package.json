@@ -1,24 +1,25 @@
 {
-  "name": "run-buddy-two",
+  "name": "running-on-empty",
   "version": "1.0.0",
   "description": "README INFO",
-  "main": "index.js",
+  "main": "server/server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node server/server.js",
-	  "develop": "concurrently \"cd server && npm run watch\" \"cd client && npm start\"",
-  	"install": "cd server && npm i && cd ../client && npm i"
+    "develop": "concurrently \"cd server && npm run watch\" \"cd client && npm start\"",
+    "install": "cd server && npm i && cd ../client && npm i",
+    "seed": "cd server && npm run seed",
+    "build": "cd client && npm run build"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/rprice000/run-buddy-two.git"
+    "url": "git+https://github.com/rprice000/running-on-empty.git"
   },
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/rprice000/run-buddy-two/issues"
+    "url": "https://github.com/rprice000/running-on-empty"
   },
-  "homepage": "https://github.com/rprice000/run-buddy-two#readme",
+  "homepage": "https://github.com/rprice000/running-on-empty#readme",
   "dependencies": {
     "concurrently": "^7.0.0"
   }

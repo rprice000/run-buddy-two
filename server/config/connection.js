@@ -1,6 +1,4 @@
 // connection code
-<<<<<<< HEAD
-=======
 const mongoose = require('mongoose');
 
 mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/running-on-empty', {
@@ -12,4 +10,3 @@ mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/running-on-empt
 });
 
 module.exports = mongoose.connection;
->>>>>>> 32c066d8ebcafd14b0af396fd02c66e013bcd68e
