@@ -26,8 +26,6 @@ import {
   };
   
 
-  
-  // create a sample of what our global state will look like
 
 export function useProductReducer(initialState) {
     return useReducer(reducer, initialState);
