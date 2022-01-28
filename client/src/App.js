@@ -1,8 +1,10 @@
 // You will need to import components here
-
+import { StoreProvider } from "./utils/globalState";
 function App() {
   return (
-    <div> Hello World</div>
+    <StoreProvider>
+      <div> Hello World</div>
+      </StoreProvider>
   );
 }
 
