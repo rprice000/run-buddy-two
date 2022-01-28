@@ -28,18 +28,7 @@ import {
 
   
   // create a sample of what our global state will look like
-const initialState = {
-    event: [],
-    currentEvent: [{
-        eventText: "dsadsadadasdas",
-        eventTitle: "sdasdfsfa",
-        startAddress: "dssfdafdas",
-        endAddress: "dsfsdfsd",
-        runDate: "05 / 04 / 2022",
-        createdAt: "05 / 02 / 2022",
-        username: "dasfdsfa"}],
-        currentEvent: '1',
-};
+
 export function useProductReducer(initialState) {
     return useReducer(reducer, initialState);
   }

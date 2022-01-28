@@ -16,12 +16,12 @@ const client = new ApolloClient({
 function App() {
   return (
     <ApolloProvider client={client}>
-      <StoreProvider>
-        <div >
+       <StoreProvider>
+      <div >
         
           Hello World
          
-        </div>
+      </div>
       </StoreProvider>
     </ApolloProvider>
 
