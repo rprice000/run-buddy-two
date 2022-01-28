@@ -1,6 +1,6 @@
 // You will need to import components here
 import { ApolloProvider, ApolloClient, InMemoryCache, createHttpLink } from '@apollo/client';
-
+import { StoreProvider } from "./utils/globalState";
 
 //connection to the back-end server's /graphql
 const httpLink = createHttpLink({
@@ -16,11 +16,16 @@ const client = new ApolloClient({
 function App() {
   return (
     <ApolloProvider client={client}>
-      <div >
-        Hello World
-      </div>
+      <StoreProvider>
+        <div >
+        
+          Hello World
+         
+        </div>
+      </StoreProvider>
     </ApolloProvider>
-  );
+
+  )
 }
 
 export default App;
