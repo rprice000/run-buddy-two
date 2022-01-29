@@ -1,12 +1,13 @@
 // login.js
-import React, { useState } from 'react';
-import { useMutation } from '@apollo/client';
-import { Link } from 'react-router-dom';
-import { LOGIN } from '../utils/mutations';
-import Auth from '../utils/auth';
+import React, { useState } from "react";
+import { useMutation } from "@apollo/client";
+// import { Link } from "react-router-dom";
+import { LOGIN } from "../utils/mutations";
+import Auth from "../utils/auth";
+import { Button, Form, Grid } from "semantic-ui-react";
 
 function Login(props) {
-  const [formState, setFormState] = useState({ email: '', password: '' });
+  const [formState, setFormState] = useState({ email: "", password: "" });
   const [login, { error }] = useMutation(LOGIN);
 
   const handleFormSubmit = async (event) => {
@@ -32,39 +33,44 @@ function Login(props) {
 
   return (
     <div>
-      <Link to="/signup">← Go to Signup</Link>
-
-      <h2>Login</h2>
-      <form onSubmit={handleFormSubmit}>
-        <div>
-          <label htmlFor="email">Email address:</label>
-          <input
-            placeholder="youremail@test.com"
-            name="email"
-            type="email"
-            id="email"
-            onChange={handleChange}
-          />
-        </div>
-        <div>
-          <label htmlFor="pwd">Password:</label>
-          <input
-            placeholder="******"
-            name="password"
-            type="password"
-            id="pwd"
-            onChange={handleChange}
-          />
-        </div>
-        {error ? (
-          <div>
-            <p>The provided credentials are incorrect</p>
-          </div>
-        ) : null}
-        <div>
-          <button type="submit">Submit</button>
-        </div>
-      </form>
+      <Grid columns="three">
+        <Grid.Row>
+          <Grid.Column></Grid.Column>
+          <Grid.Column>
+            <h2>Login</h2>
+            <Form onSubmit={handleFormSubmit}>
+              <Form.Field>
+                <label htmlFor="username">Username:</label>
+                <input
+                  placeholder="username"
+                  name="username"
+                  // type="username"
+                  onChange={handleChange}
+                />
+              </Form.Field>
+              <Form.Field>
+                <label htmlFor="pwd">Password:</label>
+                <input
+                  placeholder="******"
+                  name="password"
+                  type="password"
+                  id="pwd"
+                  onChange={handleChange}
+                />
+              </Form.Field>
+              {error ? (
+                <div>
+                  <p>The provided credentials are incorrect</p>
+                </div>
+              ) : null}
+              <div>
+                <Button type="submit">Submit</Button>
+              </div>
+            </Form>
+          </Grid.Column>
+          <Grid.Column></Grid.Column>
+        </Grid.Row>
+      </Grid>
     </div>
   );
 }
