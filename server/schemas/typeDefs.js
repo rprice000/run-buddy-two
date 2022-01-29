@@ -40,10 +40,11 @@ type Event {
     user(username: String!): User
     events(username: String): [Event]
     event(_id: ID!): Event
+    checkout(donation: [ID]!): Checkout
   }
 
   type Mutation {
-    login(email: String!, password: String!): Auth
+    login(username: String!, password: String!): Auth
     addUser(username: String!, email: String!, password: String!): Auth
     addEvent(eventText: String!): Event
     addComment(eventId: ID!, commentBody: String!): Event
@@ -54,6 +55,16 @@ type Event {
     token: ID!
     user: User
   }
+
+  type Checkout {
+  session: ID
+}
+
+type Donation {
+     _id: ID
+     purchaseDate: String
+    #  event: [Event]
+   }
 `;
 
 

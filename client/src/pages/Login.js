@@ -7,16 +7,17 @@ import Auth from "../utils/auth";
 import { Button, Form, Grid } from "semantic-ui-react";
 
 function Login(props) {
-  const [formState, setFormState] = useState({ email: "", password: "" });
+  const [formState, setFormState] = useState({ username: "", password: "" });
   const [login, { error }] = useMutation(LOGIN);
 
   const handleFormSubmit = async (event) => {
     event.preventDefault();
     try {
       const mutationResponse = await login({
-        variables: { email: formState.email, password: formState.password },
+        variables: { username: formState.username, password: formState.password },
       });
       const token = mutationResponse.data.login.token;
+      console.log(mutationResponse);
       Auth.login(token);
     } catch (e) {
       console.log(e);
@@ -30,6 +31,8 @@ function Login(props) {
       [name]: value,
     });
   };
+
+
 
   return (
     <div>
@@ -45,6 +48,8 @@ function Login(props) {
                   placeholder="username"
                   name="username"
                   // type="username"
+                  id="username"
+                  value={formState.username}
                   onChange={handleChange}
                 />
               </Form.Field>

@@ -8,7 +8,7 @@ import Home from './pages/Home';
 import Nav from './componets/Nav';
 import Login from './pages/Login';
 import Signup from './pages/Signup';
-
+import Profile from './pages/Profile';
 
 //connection to the back-end server's /graphql
 const httpLink = createHttpLink({
@@ -32,6 +32,7 @@ function App() {
               <Route exact path="/" component={Home} />
               <Route exact path="/login" component={Login} />
               <Route exact path="/signup" component={Signup} />
+              <Route exact path="/profile/:username?" component={Profile} />
 
             </Switch>
           </StoreProvider>

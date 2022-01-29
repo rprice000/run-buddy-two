@@ -10,7 +10,7 @@ function Nav() {
           return (
             <Menu secondary>
               <Menu.Item as='a'>
-                <Link>
+                <Link to="/profile">
                   Profile
                 </Link>
               </Menu.Item>

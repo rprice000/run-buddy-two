@@ -76,7 +76,7 @@ const Signup = () => {
                   placeholder="******"
                   name="password"
                   type="password"
-                  id="password"
+                  id="pwd"
                   value={formState.password}
                   onChange={handleChange}
                 />
