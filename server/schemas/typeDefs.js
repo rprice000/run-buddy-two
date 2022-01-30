@@ -46,7 +46,8 @@ type Event {
   type Mutation {
     login(username: String!, password: String!): Auth
     addUser(username: String!, email: String!, password: String!): Auth
-    addEvent(eventText: String!): Event
+    addEvent(eventText: String!, eventTitle: String!, startAddress: String!, 
+    endAddress: String!, runDate: String!): Event
     addComment(eventId: ID!, commentBody: String!): Event
     addAttendee(attendeeId: ID!): User
   }
