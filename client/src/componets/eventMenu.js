@@ -9,7 +9,7 @@ const [state, dispatch] = useStoreContext();
 
 const { events } = state;
 
-const { data: eventData } = useQuery(QUERY_CATEGORIES);
+const { data: eventData } = useQuery(QUERY_EVENT);
 const handleClick = id => {
     dispatch({
       type: UPDATE_CURRENT_EVENT,
@@ -41,3 +41,4 @@ return (
       ))}
     </div>
   );
+

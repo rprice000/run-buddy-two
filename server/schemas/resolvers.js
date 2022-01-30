@@ -2,8 +2,8 @@
 const { AuthenticationError } = require('apollo-server-express');
 const { User, Event } = require('../models');
 const { signToken } = require('../utils/auth');
-// NEED TO ADD THIS AFTER DOING STRIPE SETUP
-// const stripe = require('stripe')('sk_test_4eC39HqLyjWDarjtT1zdp7dc');
+
+const stripe = require('stripe')('sk_test_4eC39HqLyjWDarjtT1zdp7dc');
 
 const resolvers = {
   Query: {
@@ -39,6 +39,11 @@ const resolvers = {
         .select('-__v -password')
         .populate('attendees')
         .populate('events');
+    },
+
+    checkout: async (parent, args, context) => {
+      const order = new Order({ donations: args.donations });
+      const { donations } = await order.populate('donations').execPopulate();
     }
   },
     Mutation: {
@@ -48,8 +53,8 @@ const resolvers = {
       
         return { token, user };
       },
-      login: async (parent, { email, password }) => {
-        const user = await User.findOne({ email });
+      login: async (parent, { username, password }) => {
+        const user = await User.findOne({ username });
       
         if (!user) {
           throw new AuthenticationError('Incorrect credentials');
