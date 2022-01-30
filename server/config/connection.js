@@ -1,7 +1,7 @@
 // connection code
 const mongoose = require('mongoose');
 
-mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/running-on-empty', {
+mongoose.connect(process.env.MONGODB_URI || 'mongodb://127.0.0.1/running-on-empty', {
   useNewUrlParser: true,
   useUnifiedTopology: true,
   // useCreateIndex: true,

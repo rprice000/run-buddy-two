@@ -9,22 +9,22 @@ function Nav() {
         if (Auth.loggedIn()) {
           return (
             <Menu secondary>
-              <Menu.Item as='a'>
+              <Menu.Item >
                 <Link to="/profile">
                   Profile
                 </Link>
               </Menu.Item>
-              <Menu.Item as='a'>
-                <Link>
+              <Menu.Item >
+                <Link to="/calender">
                  Calendar
                 </Link>
               </Menu.Item>
-              <Menu.Item as='a'>
-                <Link>
+              <Menu.Item>
+                <Link to="/donations">
                  Donations
                 </Link>
               </Menu.Item>
-              <Menu.Item as='a'>
+              <Menu.Item >
                 {/* this is not using the Link component to logout or user and then refresh the application to the start */}
                 <a href="/" onClick={() => Auth.logout()}>
                   Logout
@@ -35,12 +35,12 @@ function Nav() {
         } else {
           return (
             <Menu secondary>
-              <Menu.Item as='a'>
+              <Menu.Item >
                 <Link to="/signup">
                   Signup
                 </Link>
               </Menu.Item>
-              <Menu.Item as='a'>
+              <Menu.Item >
                 <Link to="/login">
                   Login
                 </Link>

@@ -1,12 +1,18 @@
-import React, { useState } from 'react';
+import React, { useState,useRef } from 'react';
 import { useMutation } from '@apollo/client';
 import { ADD_EVENT } from '../utils/mutations';
 import { QUERY_EVENTS, QUERY_ME } from '../utils/queries';
-import { Form, TextArea, Button, Grid } from 'semantic-ui-react'
+import { Form,Button, Grid } from 'semantic-ui-react'
 
 const EventForm = () => {
+  const eventText = useRef();
+  const eventTitle = useRef();
+  const startAddress = useRef();
+  const endAddress = useRef();
+  const runDate = useRef();
 
-    const [eventText, setText] = useState('');
+ 
+    
     const [characterCount, setCharacterCount] = useState(0);
     const [addEvent, { error }] = useMutation(ADD_EVENT, {
       update(cache, { data: { addEvent } }) {
@@ -33,67 +39,75 @@ const EventForm = () => {
 
     const handleChange = event => {
         if (event.target.value.length <= 280) {
-          setText(event.target.value);
+     
           setCharacterCount(event.target.value.length);
         }
       };
 
       const handleFormSubmit = async event => {
-        event.preventDefault();
+        console.log(event)
 
         try {
+     
           // add thought to database
           await addEvent({
-            variables: { eventText },
+            variables: {     eventText: eventText.current.value,
+              eventTitle: eventTitle.current.value,
+              startAddress: startAddress.current.value,
+              endAddress: endAddress.current.value,
+              runDate: runDate.current.value,
+              createdAt:new Date() },
           });
 
           // clear form value
-          setText("");
+        
           setCharacterCount(0);
         } catch (e) {
           console.error(e);
         }
       };
-
+    
   return (
     <Grid columns="three">
       <Grid.Row>
         <Grid.Column width={3}></Grid.Column>
         <Grid.Column width={10}>
           <Form>
-            <Form.Field onSubmit={handleFormSubmit}>
+            <Form.Field  >
               <label>Run Title</label>
-              <input 
-              placeholder="Run Title"
+              <input  ref={eventTitle}
+                placeholder="Run Title"
+                
               // value={eventTitle}
               onChange={handleChange} />
             </Form.Field>
 
-            <Form.Field onSubmit={handleFormSubmit}>
+            <Form.Field >
               <label>Date of Run</label>
-              <input placeholder="Date of Run" />
+              <input ref={runDate}
+                placeholder="Date of Run" />
             </Form.Field>
 
-            <Form.Field onSubmit={handleFormSubmit}>
+            <Form.Field>
               <label>Start Address</label>
-              <input placeholder="Start Address" />
+              <input ref= {startAddress} placeholder="Start Address" />
             </Form.Field>
 
-            <Form.Field onSubmit={handleFormSubmit}>
+            <Form.Field>
               <label>End Address</label>
-              <input placeholder="End Address" />
+              <input ref={endAddress}placeholder="End Address" />
             </Form.Field>
             
-            <TextArea
+            <textarea
               placeholder="Please describe your running event..."
-              value={eventText}
+              ref={eventText}
               onChange={handleChange}
             />
             <p className={`m-0 ${characterCount === 280 ? "text-error" : ""}`}>
               Character Count: {characterCount}/280
               {error && <span className="ml-2">Something went wrong...</span>}
             </p>
-            <Button type="submit">
+            <Button type="submit" onClick={handleFormSubmit}>
               Submit
             </Button>
           </Form>

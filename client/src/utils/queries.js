@@ -80,11 +80,11 @@ export const QUERY_EVENTS = gql`
         username
         commentBody
       }
-      attendeeCount
-        attendees {
-          _id
-          username
-      }
+      
+      #   attendees {
+      #     _id
+      #     usernamattendeeCounte
+      # }
     }
   }
 `;
@@ -95,6 +95,10 @@ export const QUERY_EVENT = gql`
     event(_id: $id) {
       _id
       eventText
+      eventTitle
+      startAddress
+      endAddress
+      runDate
       createdAt
       username
       commentCount
@@ -104,11 +108,11 @@ export const QUERY_EVENT = gql`
         username
         commentBody
       }
-      attendeeCount
-        attendees {
-          _id
-          username
-      }
+      # attendeeCount
+      #   attendees {
+      #     _id
+      #      username
+      # }
     }
   }
 `;
