@@ -57,7 +57,7 @@ export const ADD_EVENT = gql`
       startAddress
       endAddress
       runDate
-    
+      username
       # commentCount
       # comments {
       #   _id

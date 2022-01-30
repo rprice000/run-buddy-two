@@ -3,7 +3,7 @@ const { AuthenticationError } = require('apollo-server-express');
 const { User, Event } = require('../models');
 const { signToken } = require('../utils/auth');
 
-const stripe = require('stripe')('sk_test_4eC39HqLyjWDarjtT1zdp7dc');
+// const stripe = require('stripe')('sk_test_4eC39HqLyjWDarjtT1zdp7dc');
 
 const resolvers = {
   Query: {
@@ -11,8 +11,8 @@ const resolvers = {
       if (context.user) {
         const userData = await User.findOne({ _id: context.user._id })
           .select('-__v -password')
-          .populate('thoughts')
-          .populate('friends');
+          .populate('events')
+          .populate('attendees');
     
         return userData;
       }

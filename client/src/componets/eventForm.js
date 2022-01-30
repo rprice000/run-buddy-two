@@ -1,8 +1,9 @@
-import React, { useState,useRef } from 'react';
+import React, { useState, useRef } from 'react';
 import { useMutation } from '@apollo/client';
 import { ADD_EVENT } from '../utils/mutations';
 import { QUERY_EVENTS, QUERY_ME } from '../utils/queries';
-import { Form,Button, Grid } from 'semantic-ui-react'
+import { Form, Button, Grid } from 'semantic-ui-react'
+import Auth from '../utils/auth';
 
 const EventForm = () => {
   const eventText = useRef();
@@ -10,63 +11,69 @@ const EventForm = () => {
   const startAddress = useRef();
   const endAddress = useRef();
   const runDate = useRef();
+  
 
- 
-    
-    const [characterCount, setCharacterCount] = useState(0);
-    const [addEvent, { error }] = useMutation(ADD_EVENT, {
-      update(cache, { data: { addEvent } }) {
-        try {
-          // could potentially not exist yet, so wrap in a try...catch
-          const { events } = cache.readQuery({ query: QUERY_EVENTS });
-          cache.writeQuery({
-            query: QUERY_EVENTS,
-            data: { events: [addEvent, ...events] },
-          });
-        } catch (e) {
-          console.error(e);
-        }
+  const user = Auth.getProfile();
+  
 
-        // update me object's cache, appending new thought to the end of the array
-        const { me } = cache.readQuery({ query: QUERY_ME });
+  const [characterCount, setCharacterCount] = useState(0);
+  const [addEvent, { error }] = useMutation(ADD_EVENT, {
+    update(cache, { data: { addEvent } }) {
+    console.log('user', user)
+      console.log('addEvent', addEvent)
+      try {
+        // could potentially not exist yet, so wrap in a try...catch
+        const response = cache.readQuery({ query: QUERY_EVENTS });
         cache.writeQuery({
-          query: QUERY_ME,
-          data: { me: { ...me, events: [...me.events, addEvent] } },
+          query: QUERY_EVENTS,
+          data: { events: response ? [addEvent, ...response.events] : [addEvent] },
         });
-      },
-    });
+      } catch (e) {
+        console.error(e);
+      }
+
+      // update me object's cache, appending new thought to the end of the array
+      const { me } = cache.readQuery({ query: QUERY_ME });
+      cache.writeQuery({
+        query: QUERY_ME,
+        data: { me: { ...me, events: [...me.events, addEvent] } },
+      });
+    },
+  });
 
 
-    const handleChange = event => {
-        if (event.target.value.length <= 280) {
-     
-          setCharacterCount(event.target.value.length);
-        }
-      };
+  const handleChange = event => {
+    if (event.target.value.length <= 280) {
 
-      const handleFormSubmit = async event => {
-        console.log(event)
+      setCharacterCount(event.target.value.length);
+    }
+  };
 
-        try {
-     
-          // add thought to database
-          await addEvent({
-            variables: {     eventText: eventText.current.value,
-              eventTitle: eventTitle.current.value,
-              startAddress: startAddress.current.value,
-              endAddress: endAddress.current.value,
-              runDate: runDate.current.value,
-              createdAt:new Date() },
-          });
+  const handleFormSubmit = async event => {
+    console.log(event)
 
-          // clear form value
-        
-          setCharacterCount(0);
-        } catch (e) {
-          console.error(e);
-        }
-      };
-    
+    try {
+
+      // add thought to database
+      await addEvent({
+        variables: {
+          eventText: eventText.current.value,
+          eventTitle: eventTitle.current.value,
+          startAddress: startAddress.current.value,
+          endAddress: endAddress.current.value,
+          runDate: runDate.current.value,
+          createdAt: new Date()
+        },
+      });
+
+      // clear form value
+
+      setCharacterCount(0);
+    } catch (e) {
+      console.error(e);
+    }
+  };
+
   return (
     <Grid columns="three">
       <Grid.Row>
@@ -75,11 +82,11 @@ const EventForm = () => {
           <Form>
             <Form.Field  >
               <label>Run Title</label>
-              <input  ref={eventTitle}
+              <input ref={eventTitle}
                 placeholder="Run Title"
-                
-              // value={eventTitle}
-              onChange={handleChange} />
+
+                // value={eventTitle}
+                onChange={handleChange} />
             </Form.Field>
 
             <Form.Field >
@@ -90,14 +97,14 @@ const EventForm = () => {
 
             <Form.Field>
               <label>Start Address</label>
-              <input ref= {startAddress} placeholder="Start Address" />
+              <input ref={startAddress} placeholder="Start Address" />
             </Form.Field>
 
             <Form.Field>
               <label>End Address</label>
-              <input ref={endAddress}placeholder="End Address" />
+              <input ref={endAddress} placeholder="End Address" />
             </Form.Field>
-            
+
             <textarea
               placeholder="Please describe your running event..."
               ref={eventText}

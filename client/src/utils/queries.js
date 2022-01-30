@@ -33,10 +33,16 @@ export const QUERY_ME = gql`
     #   friendCount
       events {
         _id
+        username
+        eventTitle
         eventText
         createdAt
+        startAddress
+        endAddress
+        runDate
         commentCount
-        comments {
+        comments
+        username {
           _id
           createdAt
           commentBody
@@ -70,9 +76,13 @@ export const QUERY_EVENTS = gql`
   query events($username: String) {
     events(username: $username) {
       _id
-      eventText
-      createdAt
-      username
+      eventTitle
+        eventText
+        createdAt
+        startAddress
+        endAddress
+        runDate
+        username
       commentCount
       comments {
         _id
