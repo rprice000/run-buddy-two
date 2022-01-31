@@ -2,8 +2,7 @@ import React, { useState, useRef } from 'react';
 import { useMutation } from '@apollo/client';
 import { ADD_EVENT } from '../utils/mutations';
 import { QUERY_EVENTS, QUERY_ME } from '../utils/queries';
-import { Form, Button, Grid } from 'semantic-ui-react'
-import Auth from '../utils/auth';
+import { Form, Button, Grid } from 'semantic-ui-react';
 
 const EventForm = () => {
   const eventText = useRef();
@@ -12,14 +11,11 @@ const EventForm = () => {
   const endAddress = useRef();
   const runDate = useRef();
   
-
-  const user = Auth.getProfile();
   
 
   const [characterCount, setCharacterCount] = useState(0);
   const [addEvent, { error }] = useMutation(ADD_EVENT, {
     update(cache, { data: { addEvent } }) {
-    console.log('user', user)
       console.log('addEvent', addEvent)
       try {
         // could potentially not exist yet, so wrap in a try...catch

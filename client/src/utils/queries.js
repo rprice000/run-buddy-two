@@ -42,12 +42,6 @@ export const QUERY_ME = gql`
         runDate
         commentCount
         comments
-        username {
-          _id
-          createdAt
-          commentBody
-          username
-        }
       }
     #   friends {
     #     _id
