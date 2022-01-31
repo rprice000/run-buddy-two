@@ -10,7 +10,7 @@ const typeDefs = gql`
     email: String
     attendeeCount: Int
     events: [Event]
-    attendees: [User]
+    attendee: [User]
   }
  
 type Event {
@@ -24,7 +24,13 @@ type Event {
     username: String
     commentCount: Int
     comments: [Comment]
+    donations: [Donation]
+  }
 
+  type Donation {
+    _id: ID
+    donationDate: String
+    donation: Float
   }
 
   type Comment {
@@ -40,13 +46,13 @@ type Event {
     user(username: String!): User
     events(username: String): [Event]
     event(_id: ID!): Event
-    checkout(donation: [ID]!): Checkout
+    checkout(donation: Float! event_id: ID!): Checkout
   }
 
   type Mutation {
     login(username: String!, password: String!): Auth
     addUser(username: String!, email: String!, password: String!): Auth
-    addEvent(eventText: String!, eventTitle: String!, startAddress: String!, 
+    addEvent(eventText: String!, eventTitle: String!, startAddress: String!,
     endAddress: String!, runDate: String!): Event
     addComment(eventId: ID!, commentBody: String!): Event
     addAttendee(attendeeId: ID!): User

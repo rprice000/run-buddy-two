@@ -4,16 +4,19 @@ import { Redirect, useParams } from 'react-router-dom';
 // import EventList from '../components/EventList';
 import Auth from '../utils/auth';
 import { useQuery } from '@apollo/client';
-import { QUERY_USER, QUERY_ME } from '../utils/queries';
+import { QUERY_USER, QUERY_ME, QUERY_ME_BASIC } from '../utils/queries';
 
 const Profile = (props) => {
     const { username: userParam } = useParams();
+    console.log(userParam);
 
     const { loading, data } = useQuery(userParam ? QUERY_USER : QUERY_ME, {
         variables: { username: userParam },
       });
-
+  // const { loading, data } = useQuery(QUERY_ME_BASIC);
     const user = data?.me || data?.user || {};
+    console.log(data)
+    console.log(user)
    // redirect to personal profile page if username is yours
   if (Auth.loggedIn() && Auth.getProfile().data.username === userParam) {
     return <Redirect to="/profile" />;

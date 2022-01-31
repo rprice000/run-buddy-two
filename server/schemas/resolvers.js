@@ -1,6 +1,6 @@
 // resolvers.js code
 const { AuthenticationError } = require('apollo-server-express');
-const { User, Event } = require('../models');
+const { User, Event, Donation } = require('../models');
 const { signToken } = require('../utils/auth');
 
 // const stripe = require('stripe')('sk_test_4eC39HqLyjWDarjtT1zdp7dc');
@@ -8,12 +8,13 @@ const { signToken } = require('../utils/auth');
 const resolvers = {
   Query: {
     me: async (parent, args, context) => {
+      console.log(`context.user: ${context.user}`)
       if (context.user) {
         const userData = await User.findOne({ _id: context.user._id })
           .select('-__v -password')
           .populate('events')
-          .populate('attendees');
-    
+          .populate('attendee');
+        console.log(userData)
         return userData;
       }
     
@@ -42,8 +43,9 @@ const resolvers = {
     },
 
     checkout: async (parent, args, context) => {
-      const order = new Order({ donations: args.donations });
-      const { donations } = await order.populate('donations').execPopulate();
+      const donation = new Donation({ donation: args.donation });
+      const updatedEvent = await Event.findByIdAndUpdate({_id: args.event_id}, {$push:{donations: donation._id}})
+      // const { donation } = await order.populate('donation').execPopulate();
     }
   },
     Mutation: {
@@ -70,15 +72,16 @@ const resolvers = {
         return { token, user };
       },
       addEvent: async (parent, args, context) => {
+        console.log(args);
         if (context.user) {
           const event = await Event.create({ ...args, username: context.user.username });
-      
-          await User.findByIdAndUpdate(
+          console.log(event)
+          const updatedUser = await User.findByIdAndUpdate(
             { _id: context.user._id },
             { $push: { events: event._id } },
             { new: true }
           );
-      
+            console.log(updatedUser);
           return event;
         }
       
