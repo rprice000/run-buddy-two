@@ -7,13 +7,19 @@ const typeDefs = gql`
     _id: ID
     username: String
     email: String
-<<<<<<< HEAD
     event:[Event]
     attendee:[User]
     attendeeCount:Int
-=======
     events: [Event]
->>>>>>> origin/reagan
+
+
+ type User {
+    _id: ID
+    username: String
+    email: String
+    attendeeCount: Int
+    events: [Event]
+    attendee: [User]
   }
 
  
@@ -25,19 +31,13 @@ type Event {
     endAddress: String
     runDate: String
     createdAt: String
-<<<<<<< HEAD
-    # username: String
-    # commentCount: Int
-    # comments: [Comment]
-=======
     username: String
     commentCount: Int
     comments: [Comment]
     donations: [Donation]
-    attendees: [User]
-    attendeeCount: Int
+    # attendees: [User]
+    # attendeeCount: Int
   }
->>>>>>> origin/reagan
 
   type Donation {
     _id: ID
@@ -53,21 +53,12 @@ type Event {
   }
 
   type Query {
-<<<<<<< HEAD
-    me: [User]
-    user:[User]
-    users:[User]
-    events: [Event]
-    event: [Event]
-    checkout(donation: [ID]!): Checkout
-=======
     me: User
     users: [User]
     user(username: String!): User
     events(username: String): [Event]
     event(_id: ID!): Event
     checkout(donation: Float! event_id: ID!): Checkout
->>>>>>> origin/reagan
   }
 
   type Mutation {

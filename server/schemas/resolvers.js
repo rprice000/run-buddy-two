@@ -13,12 +13,9 @@ const resolvers = {
         const userData = await User.findOne({ _id: context.user._id })
           .select('-__v -password')
           .populate('events')
-          .populate('attendees');
-<<<<<<< HEAD
-    
-=======
-        console.log(userData)
->>>>>>> origin/reagan
+          .populate('attendees')
+          .populate('attendee')
+      console.log(userData)
         return userData;
       }
     
@@ -92,17 +89,17 @@ const resolvers = {
         throw new AuthenticationError('You need to be logged in!');
       },
 
-      deleteEvent: async (parent, {eventId}, context) => {
-        if (context.user) {
-          const event = await User.findByIdAndUpdate(
-            {_id: context.user._id},
-            { $pull: {events: eventId}},
-            { new: true }
-          )
-          return event;
-        }
-        throw new AuthenticationError('You need to be logged in')
-      },
+      // deleteEvent: async (parent, {eventId}, context) => {
+      //   if (context.user) {
+      //     const event = await User.findByIdAndUpdate(
+      //       {_id: context.user._id},
+      //       { $pull: {events: eventId}},
+      //       { new: true }
+      //     )
+      //     return event;
+      //   }
+      //   throw new AuthenticationError('You need to be logged in')
+      // },
       
 
 
@@ -127,9 +124,9 @@ const resolvers = {
         if (context.event) {
           const updatedUser = await Event.findOneAndUpdate(
             { _id: context.event._id },
-            { $addToSet: { attendees: attendeeId } },
+            { $addToSet: { attendee: attendeeId } },
             { new: true }
-          ).populate('attendees');
+          ).populate('attendee');
       
           return updatedUser;
         }

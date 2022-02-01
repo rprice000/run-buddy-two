@@ -1,7 +1,7 @@
 // You will need to import components here
 import { ApolloProvider, ApolloClient, InMemoryCache, createHttpLink} from '@apollo/client';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
-// import { StoreProvider } from "./utils/globalState";
+import { StoreProvider } from "./utils/globalState";
 import { setContext } from '@apollo/client/link/context';
 
 import Home from './pages/Home';
@@ -39,7 +39,7 @@ function App() {
     <ApolloProvider client={client}>
       <Router>
         <div>
-          {/* <StoreProvider> */}
+          <StoreProvider>
             <Nav />
             <Switch>
               <Route exact path="/" component={Home} />
@@ -51,7 +51,7 @@ function App() {
               <Route component={NoMatch} />
 
             </Switch>
-          {/* </StoreProvider> */}
+          </StoreProvider>
         </div>
       </Router>
     </ApolloProvider>

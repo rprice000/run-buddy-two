@@ -39,14 +39,6 @@ const eventSchema = new Schema(
       default: Date.now,
       get: timestamp => dateFormat(timestamp)
     },
-<<<<<<< HEAD
-     username: {
-       type: String,
-       required: true
-     },
-     comments: [commentSchema]
-   },
-=======
     username: {
       type: String,
       required: true
@@ -55,13 +47,12 @@ const eventSchema = new Schema(
       type: Schema.Types.ObjectId,
       ref: "Donation"
     }],
-    attendees: [{
-      type: Schema.Types.ObjectId,
-        ref: 'User'
-    }],
+    // attendees: [{
+    //   type: Schema.Types.ObjectId,
+    //     ref: 'User'
+    // }],
     comments: [commentSchema]
   },
->>>>>>> origin/reagan
   {
     toJSON: {
       getters: true
@@ -69,20 +60,20 @@ const eventSchema = new Schema(
   }
 );
 
-<<<<<<< HEAD
 // eventSchema.virtual('commentCount').get(function() {
 //   return this.comment.length;
 // });
-=======
+
 eventSchema.virtual('commentCount').get(function() {
   return this.comments.length;
-});
-
+})
 eventSchema.virtual('attendeeCount').get(function() {
   return this.attendees.length;
-});
->>>>>>> origin/reagan
+})
 
+// eventSchema.virtual('attendeeCount').get(function() {
+//   return this.attendees.length;
+// });
 const Event = model('Event', eventSchema);
 
 module.exports = Event;

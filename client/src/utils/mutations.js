@@ -66,37 +66,37 @@ export const ADD_EVENT = gql`
   }
 `;
 
-export const DELETE_EVENT = gql`
-  mutation deleteEvent(
-    $eventText: String!
-    $eventTitle: String!
-    $startAddress: String!
-    $endAddress: String!
-    $runDate: String!
-    ) {
-    deleteEvent(eventText: $eventText
-       eventTitle: $eventTitle
-       startAddress: $startAddress
-       endAddress: $endAddress
-       runDate: $runDate
+// export const DELETE_EVENT = gql`
+//   mutation deleteEvent(
+//     $eventText: String!
+//     $eventTitle: String!
+//     $startAddress: String!
+//     $endAddress: String!
+//     $runDate: String!
+//     ) {
+//     deleteEvent(eventText: $eventText
+//        eventTitle: $eventTitle
+//        startAddress: $startAddress
+//        endAddress: $endAddress
+//        runDate: $runDate
        
        
-    ) {
-      _id
-      eventText
-      createdAt
-      eventTitle
-      startAddress
-      endAddress
-      runDate
-      username
-      # commentCount
-      # comments {
-      #   _id
-      # }
-    }
-  }
-`;
+//     ) {
+//       _id
+//       eventText
+//       createdAt
+//       eventTitle
+//       startAddress
+//       endAddress
+//       runDate
+//       username
+//       # commentCount
+//       # comments {
+//       #   _id
+//       # }
+//     }
+//   }
+// `;
 
 
 export const ADD_COMMENT = gql`
