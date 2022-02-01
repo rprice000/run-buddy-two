@@ -1,19 +1,24 @@
 // resolvers.js code
 const { AuthenticationError } = require('apollo-server-express');
-const { User, Event } = require('../models');
+const { User, Event, Donation } = require('../models');
 const { signToken } = require('../utils/auth');
 
-const stripe = require('stripe')('sk_test_4eC39HqLyjWDarjtT1zdp7dc');
+// const stripe = require('stripe')('sk_test_4eC39HqLyjWDarjtT1zdp7dc');
 
 const resolvers = {
   Query: {
     me: async (parent, args, context) => {
+      console.log(`context.user: ${context.user}`)
       if (context.user) {
         const userData = await User.findOne({ _id: context.user._id })
           .select('-__v -password')
           .populate('events')
           .populate('attendees');
+<<<<<<< HEAD
     
+=======
+        console.log(userData)
+>>>>>>> origin/reagan
         return userData;
       }
     
@@ -42,8 +47,9 @@ const resolvers = {
     },
 
     checkout: async (parent, args, context) => {
-      const order = new Order({ donations: args.donations });
-      const { donations } = await order.populate('donations').execPopulate();
+      const donation = new Donation({ donation: args.donation });
+      const updatedEvent = await Event.findByIdAndUpdate({_id: args.event_id}, {$push:{donations: donation._id}})
+      // const { donation } = await order.populate('donation').execPopulate();
     }
   },
     Mutation: {
@@ -70,20 +76,40 @@ const resolvers = {
         return { token, user };
       },
       addEvent: async (parent, args, context) => {
+        console.log(args);
         if (context.user) {
           const event = await Event.create({ ...args, username: context.user.username });
-      
-          await User.findByIdAndUpdate(
+          console.log(event)
+          const updatedUser = await User.findByIdAndUpdate(
             { _id: context.user._id },
             { $push: { events: event._id } },
             { new: true }
           );
-      
+            console.log(updatedUser);
           return event;
         }
       
         throw new AuthenticationError('You need to be logged in!');
       },
+
+      deleteEvent: async (parent, {eventId}, context) => {
+        if (context.user) {
+          const event = await User.findByIdAndUpdate(
+            {_id: context.user._id},
+            { $pull: {events: eventId}},
+            { new: true }
+          )
+          return event;
+        }
+        throw new AuthenticationError('You need to be logged in')
+      },
+      
+
+
+
+
+
+
       addComment: async (parent, { eventId, commentBody }, context) => {
         if (context.user) {
           const updatedEvent = await Event.findOneAndUpdate(
@@ -98,12 +124,12 @@ const resolvers = {
         throw new AuthenticationError('You need to be logged in!');
       },
       addAttendee: async (parent, { attendeeId }, context) => {
-        if (context.user) {
-          const updatedUser = await User.findOneAndUpdate(
-            { _id: context.user._id },
-            { $addToSet: { attendee: attendeeId } },
+        if (context.event) {
+          const updatedUser = await Event.findOneAndUpdate(
+            { _id: context.event._id },
+            { $addToSet: { attendees: attendeeId } },
             { new: true }
-          ).populate('attendee');
+          ).populate('attendees');
       
           return updatedUser;
         }
@@ -111,6 +137,27 @@ const resolvers = {
         throw new AuthenticationError('You need to be logged in!');
       }
       
+
+      // addAttendee: async (parent, { attendeeId }, context) => {
+      //   if (context.user) {
+      //     const updatedUser = await User.findOneAndUpdate(
+      //       { _id: context.user._id },
+      //       { $addToSet: { attendee: attendeeId } },
+      //       { new: true }
+      //     ).populate('attendee');
+      
+      //     return updatedUser;
+      //   }
+      
+      //   throw new AuthenticationError('You need to be logged in!');
+      // }
+      
+
+
+
+
+
+
     }
   };
 
@@ -123,7 +170,6 @@ const resolvers = {
 //   }
 
 // },
-
 
 
 // deleteEvent: async (parent, args, context) => {

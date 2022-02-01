@@ -20,7 +20,11 @@ const userSchema = new Schema(
       required: true,
       minlength: 5
     },
+<<<<<<< HEAD
    event: [
+=======
+    events: [
+>>>>>>> origin/reagan
       {
         type: Schema.Types.ObjectId,
         ref: 'event'

@@ -32,11 +32,23 @@ export const QUERY_ME = gql`
       email
       event {
         _id
+        username
+        eventTitle
         eventText
         createdAt
-       startAddress
+        startAddress
         endAddress
         runDate
+        commentCount
+        comments {
+          _id
+        }
+        # username {
+        #   _id
+        #   createdAt
+        #   commentBody
+        #   username
+        # }
       }
     #   friendCount
       # events {
@@ -84,13 +96,13 @@ export const QUERY_EVENTS = gql`
   query events($username: String) {
     events(username: $username) {
       _id
-      eventText
       eventTitle
-      startAddress
-      endAddress
-      runDate
-      createdAt
-      username
+        eventText
+        createdAt
+        startAddress
+        endAddress
+        runDate
+        username
       commentCount
       comments {
         _id
