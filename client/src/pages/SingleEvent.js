@@ -1,8 +1,8 @@
 import React from 'react';
 import { useParams } from 'react-router-dom';
-// import Auth from '../utils/auth';
+import Auth from '../utils/auth';
 import CommentList from '../componets/commentList';
-// import CommentForm from '../componets/commentForm';
+import CommentForm from '../componets/commentForm';
 import { useQuery } from '@apollo/client';
 import { QUERY_EVENT } from '../utils/queries';
 
@@ -34,8 +34,7 @@ const SingleEvent = (props) => {
             <p>{event.startAddress}</p>
             <p>{event.endAddress}</p>
             <p>{event.runDate}</p>
-            {/* <p>{event.commentCount}</p> */}
-            {/* <p>{event.eventText}</p> */}
+            <p>{event.commentCount}</p>
             {/* attendees here */}
 
           </div>
@@ -44,7 +43,7 @@ const SingleEvent = (props) => {
         {event.commentCount > 0 && (
           <CommentList comments={event.comments} />
         )}
-        {/* {Auth.loggedIn() && <CommentForm eventId={event._id} />} */}
+        {Auth.loggedIn() && <CommentForm eventId={event._id} />}
       </div>
     );
   };

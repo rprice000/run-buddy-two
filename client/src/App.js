@@ -1,10 +1,11 @@
 // You will need to import components here
 import { ApolloProvider, ApolloClient, InMemoryCache, createHttpLink} from '@apollo/client';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
-import { StoreProvider } from "./utils/globalState";
+// import { StoreProvider } from "./utils/globalState";
 import { setContext } from '@apollo/client/link/context';
 
 import Home from './pages/Home';
+import NoMatch from './pages/NoMatch';
 import Nav from './componets/Nav';
 import Login from './pages/Login';
 import Signup from './pages/Signup';
@@ -38,7 +39,7 @@ function App() {
     <ApolloProvider client={client}>
       <Router>
         <div>
-          <StoreProvider>
+          {/* <StoreProvider> */}
             <Nav />
             <Switch>
               <Route exact path="/" component={Home} />
@@ -47,9 +48,10 @@ function App() {
               <Route exact path="/profile/:username?" component={Profile} />
               <Route exact path="/eventForm" component={EventForm} />
               <Route exact path="/event/:id" component={SingleEvent} />
+              <Route component={NoMatch} />
 
             </Switch>
-          </StoreProvider>
+          {/* </StoreProvider> */}
         </div>
       </Router>
     </ApolloProvider>

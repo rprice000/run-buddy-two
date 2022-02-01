@@ -3,8 +3,8 @@ import { useMutation } from '@apollo/client';
 import { ADD_EVENT } from '../utils/mutations';
 import { QUERY_EVENTS, QUERY_ME } from '../utils/queries';
 import { Form, Button, Grid } from 'semantic-ui-react'
-import Auth from '../utils/auth';
-import { useNavigate } from "react-router-dom";
+// import Auth from '../utils/auth';
+
 
 
 
@@ -15,14 +15,20 @@ const EventForm = () => {
   const endAddress = useRef();
   const runDate = useRef();
   
+  // const [eventText, setText] = useState('');
+  // const [eventTitle, setText ] = useState('');
+  // const [startAddress, setText ] = useState('');
+  // const [endAddress, setText ] = useState('');
+  // const [runDate, setText ] = useState('');
 
-  const user = Auth.getProfile();
+  // const user = Auth.getProfile();
+  // console.log(user);
   
-
+  
   const [characterCount, setCharacterCount] = useState(0);
   const [addEvent, { error }] = useMutation(ADD_EVENT, {
     update(cache, { data: { addEvent } }) {
-    console.log('user', user)
+    // console.log('user', user)
       console.log('addEvent', addEvent)
       try {
         // could potentially not exist yet, so wrap in a try...catch
@@ -47,7 +53,7 @@ const EventForm = () => {
 
   const handleChange = event => {
     if (event.target.value.length <= 280) {
-
+      // setText(event.target.value);
       setCharacterCount(event.target.value.length);
     }
   };
@@ -70,7 +76,7 @@ const EventForm = () => {
       });
 
       // clear form value
-
+      // setText("");
       setCharacterCount(0);
     } catch (e) {
       console.error(e);
@@ -114,6 +120,7 @@ const EventForm = () => {
               placeholder="Please describe your running event..."
               ref={eventText}
               onChange={handleChange}
+              // value={eventText}
             />
             <p className={`m-0 ${characterCount === 280 ? "text-error" : ""}`}>
               Character Count: {characterCount}/280

@@ -8,9 +8,7 @@ const typeDefs = gql`
      _id: ID
     username: String
     email: String
-    attendeeCount: Int
     events: [Event]
-    attendee: [User]
   }
  
 type Event {
@@ -25,6 +23,8 @@ type Event {
     commentCount: Int
     comments: [Comment]
     donations: [Donation]
+    attendees: [User]
+    attendeeCount: Int
   }
 
   type Donation {
@@ -54,6 +54,7 @@ type Event {
     addUser(username: String!, email: String!, password: String!): Auth
     addEvent(eventText: String!, eventTitle: String!, startAddress: String!,
     endAddress: String!, runDate: String!): Event
+    deleteEvent(eventId: ID!): User
     addComment(eventId: ID!, commentBody: String!): Event
     addAttendee(attendeeId: ID!): User
   }

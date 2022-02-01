@@ -13,7 +13,7 @@ const resolvers = {
         const userData = await User.findOne({ _id: context.user._id })
           .select('-__v -password')
           .populate('events')
-          .populate('attendee');
+          .populate('attendees');
         console.log(userData)
         return userData;
       }
@@ -87,6 +87,25 @@ const resolvers = {
       
         throw new AuthenticationError('You need to be logged in!');
       },
+
+      deleteEvent: async (parent, {eventId}, context) => {
+        if (context.user) {
+          const event = await User.findByIdAndUpdate(
+            {_id: context.user._id},
+            { $pull: {events: eventId}},
+            { new: true }
+          )
+          return event;
+        }
+        throw new AuthenticationError('You need to be logged in')
+      },
+      
+
+
+
+
+
+
       addComment: async (parent, { eventId, commentBody }, context) => {
         if (context.user) {
           const updatedEvent = await Event.findOneAndUpdate(
@@ -101,12 +120,12 @@ const resolvers = {
         throw new AuthenticationError('You need to be logged in!');
       },
       addAttendee: async (parent, { attendeeId }, context) => {
-        if (context.user) {
-          const updatedUser = await User.findOneAndUpdate(
-            { _id: context.user._id },
-            { $addToSet: { attendee: attendeeId } },
+        if (context.event) {
+          const updatedUser = await Event.findOneAndUpdate(
+            { _id: context.event._id },
+            { $addToSet: { attendees: attendeeId } },
             { new: true }
-          ).populate('attendee');
+          ).populate('attendees');
       
           return updatedUser;
         }
@@ -114,6 +133,27 @@ const resolvers = {
         throw new AuthenticationError('You need to be logged in!');
       }
       
+
+      // addAttendee: async (parent, { attendeeId }, context) => {
+      //   if (context.user) {
+      //     const updatedUser = await User.findOneAndUpdate(
+      //       { _id: context.user._id },
+      //       { $addToSet: { attendee: attendeeId } },
+      //       { new: true }
+      //     ).populate('attendee');
+      
+      //     return updatedUser;
+      //   }
+      
+      //   throw new AuthenticationError('You need to be logged in!');
+      // }
+      
+
+
+
+
+
+
     }
   };
 
@@ -126,7 +166,6 @@ const resolvers = {
 //   }
 
 // },
-
 
 
 // deleteEvent: async (parent, args, context) => {
