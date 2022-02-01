@@ -1,7 +1,7 @@
 import React from 'react';
 import { Redirect, useParams } from 'react-router-dom';
 // import EventForm from '../components/EventForm';
-// import EventList from '../components/EventList';
+import EventList from '../componets/eventList';
 import Auth from '../utils/auth';
 import { useQuery } from '@apollo/client';
 import { QUERY_USER, QUERY_ME, QUERY_ME_BASIC } from '../utils/queries';
@@ -38,8 +38,36 @@ const Profile = (props) => {
   
     return (
       <div>
-      NOT HELLO WORLD!!!!
+      <div>
+        <h2>
+          Viewing {userParam ? `${user.username}'s` : "your"} profile.
+        </h2>
+
+        {/* {userParam && (
+          <button className="btn ml-auto" onClick={handleClick}>
+            Add Friend
+          </button>
+        )} */}
       </div>
+
+      <div>
+        <div>
+          <EventList
+            events={user.events}
+            title={`${user.username}'s events...`}
+          />
+        </div>
+
+        {/* <div>
+          <FriendList
+            username={user.username}
+            friendCount={user.friendCount}
+            friends={user.friends}
+          />
+        </div> */}
+      </div>
+      {/* <div className="mb-3">{!userParam && <ThoughtForm />}</div> */}
+    </div>
     );
   };
   

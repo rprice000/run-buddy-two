@@ -4,6 +4,9 @@ import { ADD_EVENT } from '../utils/mutations';
 import { QUERY_EVENTS, QUERY_ME } from '../utils/queries';
 import { Form, Button, Grid } from 'semantic-ui-react'
 import Auth from '../utils/auth';
+import { useNavigate } from "react-router-dom";
+
+
 
 const EventForm = () => {
   const eventText = useRef();
@@ -62,7 +65,7 @@ const EventForm = () => {
           startAddress: startAddress.current.value,
           endAddress: endAddress.current.value,
           runDate: runDate.current.value,
-          createdAt: new Date()
+          createdAt: new Date(),
         },
       });
 
@@ -72,6 +75,8 @@ const EventForm = () => {
     } catch (e) {
       console.error(e);
     }
+
+  
   };
 
   return (
