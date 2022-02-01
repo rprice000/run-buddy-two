@@ -39,12 +39,12 @@ const eventSchema = new Schema(
       default: Date.now,
       get: timestamp => dateFormat(timestamp)
     },
-    username: {
-      type: String,
-      required: true
-    },
-    comments: [commentSchema]
-  },
+     username: {
+       type: String,
+       required: true
+     },
+     comments: [commentSchema]
+   },
   {
     toJSON: {
       getters: true
@@ -52,9 +52,9 @@ const eventSchema = new Schema(
   }
 );
 
-eventSchema.virtual('commentCount').get(function() {
-  return this.comment.length;
-});
+// eventSchema.virtual('commentCount').get(function() {
+//   return this.comment.length;
+// });
 
 const Event = model('Event', eventSchema);
 

@@ -11,8 +11,8 @@ const resolvers = {
       if (context.user) {
         const userData = await User.findOne({ _id: context.user._id })
           .select('-__v -password')
-          .populate('thoughts')
-          .populate('friends');
+          .populate('events')
+          .populate('attendees');
     
         return userData;
       }
@@ -30,15 +30,15 @@ const resolvers = {
     users: async () => {
       return User.find()
         .select('-__v -password')
-        .populate('attendees')
-        .populate('events');
+        .populate('attendee')
+        .populate('event');
     },
     // get a user by username
     user: async (parent, { username }) => {
       return User.findOne({ username })
         .select('-__v -password')
-        .populate('attendees')
-        .populate('events');
+        .populate('attendee')
+        .populate('event');
     },
 
     checkout: async (parent, args, context) => {

@@ -7,13 +7,13 @@ const StoreProvider = ({ value = [], ...props }) => {
       
     event: [],
     events: [{
-        eventText: "dsadsadadasdas",
-        eventTitle: "sdasdfsfa",
-        startAddress: "dssfdafdas",
-        endAddress: "dsfsdfsd",
-        runDate: "05 / 04 / 2022",
-        createdAt: "05 / 02 / 2022",
-        username: "dasfdsfa"}],
+        eventText: "",
+        eventTitle: "",
+        startAddress: "",
+        endAddress: "",
+        runDate: "",
+            createdAt: "",
+        }],
         currentEvent: '1',
     });
     // use this to confirm it works!

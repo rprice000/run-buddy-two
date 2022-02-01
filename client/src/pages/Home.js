@@ -5,7 +5,7 @@ import EventForm from '../componets/eventForm';
 import Auth from '../utils/auth';
 import { QUERY_EVENTS, QUERY_ME_BASIC } from '../utils/queries';
 import { useQuery } from '@apollo/client';
-
+import AttendeeList from"../componets/attendeeList"
 const Home = () => {
 
   const { loading, data } = useQuery(QUERY_EVENTS);
@@ -25,7 +25,7 @@ const Home = () => {
         {loggedIn && (
           <div className="col-12 mb-3">
             <EventForm />
-            <div>You found me</div>
+          
           </div>
         )}
 
@@ -36,21 +36,23 @@ const Home = () => {
             <EventList
               events={events}
               title="Add some Events..."
-            />
+                />
+          
           )}
         </div>
-        <div>You found me</div>
-        {/* {loggedIn && userData ? (
-          // <div className="col-12 col-lg-3 mb-3">
-          //   <AttendeeList
-          //     username={userData.me.username}
-          //     attendeeCount={userData.me.attendeeCount}
-          //     attendees={userData.me.attendees}
-          //   />
-          // </div>
-        ) : null} */}
+      
+        {loggedIn && userData ? (
+          <div className="col-12 col-lg-3 mb-3">
+            <AttendeeList
+              username={userData.me.username}
+              attendeeCount={userData.me.friendCount}
+              attendee={userData.me.friends}
+            />
+          </div>
+        ) : null}
       </div>
-      </main>
+    </main>
+      
     );
   };
   

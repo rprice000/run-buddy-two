@@ -18,7 +18,7 @@ export const QUERY_USER = gql`
         _id
         eventText
         createdAt
-        commentCount
+        # commentCount
       }
     }
   }
@@ -30,19 +30,27 @@ export const QUERY_ME = gql`
       _id
       username
       email
-    #   friendCount
-      events {
+      event {
         _id
         eventText
         createdAt
-        commentCount
-        comments {
-          _id
-          createdAt
-          commentBody
-          username
-        }
+       startAddress
+        endAddress
+        runDate
       }
+    #   friendCount
+      # events {
+      #   _id
+      #   eventText
+      #   createdAt
+      #   commentCount
+      #   comments {
+      #     _id
+      #     createdAt
+      #     commentBody
+      #     username
+      #   }
+      # }
     #   friends {
     #     _id
     #     username
@@ -57,6 +65,12 @@ export const QUERY_ME_BASIC = gql`
       _id
       username
       email
+      event {
+        _id
+        eventText
+        createdAt
+     
+      }
     #   friendCount
     #   friends {
     #     _id
@@ -69,30 +83,6 @@ export const QUERY_ME_BASIC = gql`
 export const QUERY_EVENTS = gql`
   query events($username: String) {
     events(username: $username) {
-      _id
-      eventText
-      createdAt
-      username
-      commentCount
-      comments {
-        _id
-        createdAt
-        username
-        commentBody
-      }
-      
-      #   attendees {
-      #     _id
-      #     usernamattendeeCounte
-      # }
-    }
-  }
-`;
-
-
-export const QUERY_EVENT = gql`
-  query event($id: ID!) {
-    event(_id: $id) {
       _id
       eventText
       eventTitle
@@ -108,6 +98,34 @@ export const QUERY_EVENT = gql`
         username
         commentBody
       }
+      
+        attendees {
+          _id
+          usernamattendeeCounte
+      }
+    }
+  }
+`;
+
+
+export const QUERY_EVENT = gql`
+  query event($id: ID!) {
+    event(_id: $id) {
+      _id
+      eventText
+      eventTitle
+      startAddress
+      endAddress
+      runDate
+      createdAt
+      # username
+      # commentCount
+      # comments {
+      #   _id
+      #   createdAt
+      #   username
+      #   commentBody
+      # }
       # attendeeCount
       #   attendees {
       #     _id

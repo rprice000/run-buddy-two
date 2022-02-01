@@ -22,7 +22,7 @@ const commentSchema = new Schema(
     toJSON: {
       getters: true
     }
-  }
+ }
 );
 
 

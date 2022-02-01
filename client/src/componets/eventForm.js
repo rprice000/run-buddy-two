@@ -13,29 +13,45 @@ const EventForm = () => {
 
  
     
-    const [characterCount, setCharacterCount] = useState(0);
-    const [addEvent, { error }] = useMutation(ADD_EVENT, {
-      update(cache, { data: { addEvent } }) {
-        try {
-          // could potentially not exist yet, so wrap in a try...catch
-          const { events } = cache.readQuery({ query: QUERY_EVENTS });
-          cache.writeQuery({
-            query: QUERY_EVENTS,
-            data: { events: [addEvent, ...events] },
-          });
-        } catch (e) {
-          console.error(e);
-        }
+  const [characterCount, setCharacterCount] = useState(0);
+  const [addEvent, { error }] = useMutation(ADD_EVENT, {
+    update(cache, { data: { addEvent } }) {
+      try {
+        // could potentially not exist yet, so wrap in a try...catch
+        // const { events } = cache.readQuery({ query: QUERY_EVENTS });
+        // cache.writeQuery({
+        //   query: QUERY_EVENTS,
+        //   data: { events: [addEvent, ...events] },
+        cache.updateQuery({ query: QUERY_EVENTS }, (data) => ({
+          events: data.events.map((...events) => {
+            return ({ addEvent, ...events, completed: true });
+          })
+        }));
+        cache.updateQuery({ query: QUERY_ME }, (data) => ({
+          me: data.me.map((...me) => ({ ...me.events, completed: true }))
+        }));
+         
+      
+      }
 
+      catch (e) {
+        console.error(e);
+      }
+    }
+  })
         // update me object's cache, appending new thought to the end of the array
-        const { me } = cache.readQuery({ query: QUERY_ME });
-        cache.writeQuery({
-          query: QUERY_ME,
-          data: { me: { ...me, events: [...me.events, addEvent] } },
-        });
-      },
-    });
+      //   const {me } = cache.readQuery({ query: QUERY_ME });
+      //   cache.writeQuery({
+      //     query: QUERY_ME,
+      //     data: { me: { ...me, events: [...me.events, addEvent] } },
+          
+      //   });
+      //   console.log(me)
+       
+  
+  
 
+    
 
     const handleChange = event => {
         if (event.target.value.length <= 280) {
@@ -56,7 +72,8 @@ const EventForm = () => {
               startAddress: startAddress.current.value,
               endAddress: endAddress.current.value,
               runDate: runDate.current.value,
-              createdAt:new Date() },
+              createdAt: new Date()
+         },
           });
 
           // clear form value

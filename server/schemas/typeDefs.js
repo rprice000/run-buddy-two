@@ -3,15 +3,15 @@ const { gql } = require('apollo-server-express');
 
 
 const typeDefs = gql`
-
- type User {
-     _id: ID
+  type User {
+    _id: ID
     username: String
     email: String
-    attendeeCount: Int
-    events: [Event]
-    attendees: [User]
+    event:[Event]
+    attendee:[User]
+    attendeeCount:Int
   }
+
  
 type Event {
     _id: ID
@@ -21,9 +21,9 @@ type Event {
     endAddress: String
     runDate: String
     createdAt: String
-    username: String
-    commentCount: Int
-    comments: [Comment]
+    # username: String
+    # commentCount: Int
+    # comments: [Comment]
 
   }
 
@@ -35,11 +35,11 @@ type Event {
   }
 
   type Query {
-    me: User
-    users: [User]
-    user(username: String!): User
-    events(username: String): [Event]
-    event(_id: ID!): Event
+    me: [User]
+    user:[User]
+    users:[User]
+    events: [Event]
+    event: [Event]
     checkout(donation: [ID]!): Checkout
   }
 
