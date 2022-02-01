@@ -15,6 +15,11 @@ function Nav() {
                 </Link>
               </Menu.Item>
               <Menu.Item >
+                <Link to="/eventForm">
+                  Create Event
+                </Link>
+              </Menu.Item>
+              <Menu.Item >
                 <Link to="/calender">
                  Calendar
                 </Link>

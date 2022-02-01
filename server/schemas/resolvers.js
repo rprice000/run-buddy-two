@@ -112,10 +112,22 @@ const resolvers = {
         }
       
         throw new AuthenticationError('You need to be logged in!');
-      }
+      },
+      // deleteEvent: async (parent, args, context) => {
+      //   if (context.user) {
+      //     const event = await User.findByIdAndUpdate(
+      //       {_id: context.user._id},
+      //       { $pull: {events: {eventId: args.eventId}}},
+      //       { new: true }
+      //     )
+      //     return event;
+      //   }
+      //   throw new AuthenticationError('You need to be logged in')
+      // }
       
     }
   };
+
 
 
 

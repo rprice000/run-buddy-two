@@ -9,6 +9,8 @@ import Nav from './componets/Nav';
 import Login from './pages/Login';
 import Signup from './pages/Signup';
 import Profile from './pages/Profile';
+import EventForm from './componets/eventForm';
+import SingleEvent from './pages/SingleEvent';
 
 //connection to the back-end server's /graphql
 const httpLink = createHttpLink({
@@ -43,6 +45,8 @@ function App() {
               <Route exact path="/login" component={Login} />
               <Route exact path="/signup" component={Signup} />
               <Route exact path="/profile/:username?" component={Profile} />
+              <Route exact path="/eventForm" component={EventForm} />
+              <Route exact path="/event/:id" component={SingleEvent} />
 
             </Switch>
           </StoreProvider>

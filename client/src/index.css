@@ -11,3 +11,8 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+#hash-symbols {
+  background-image: url("../public/images/hash-image.png");
+  background-size: cover;
+  background-repeat: no-repeat;
+}

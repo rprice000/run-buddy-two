@@ -56,6 +56,7 @@ type Event {
     endAddress: String!, runDate: String!): Event
     addComment(eventId: ID!, commentBody: String!): Event
     addAttendee(attendeeId: ID!): User
+    # deleteEvent(eventId: ID!): User
   }
 
   type Auth {
