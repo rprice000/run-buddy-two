@@ -39,7 +39,7 @@ const Home = () => {
             />
           )}
         </div>
-        <div>You found me</div>
+        <div>You found me again</div>
         {/* {loggedIn && userData ? (
           // <div className="col-12 col-lg-3 mb-3">
           //   <AttendeeList

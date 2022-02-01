@@ -43,6 +43,10 @@ const eventSchema = new Schema(
       type: String,
       required: true
     },
+    donations: [{
+      type: Schema.Types.ObjectId,
+      ref: "Donation"
+    }],
     comments: [commentSchema]
   },
   {
@@ -53,7 +57,7 @@ const eventSchema = new Schema(
 );
 
 eventSchema.virtual('commentCount').get(function() {
-  return this.comment.length;
+  return this.comments.length;
 });
 
 const Event = model('Event', eventSchema);

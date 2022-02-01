@@ -41,7 +41,15 @@ export const QUERY_ME = gql`
         endAddress
         runDate
         commentCount
-        comments
+        comments {
+          _id
+        }
+        # username {
+        #   _id
+        #   createdAt
+        #   commentBody
+        #   username
+        # }
       }
     #   friends {
     #     _id
