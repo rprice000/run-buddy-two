@@ -25,12 +25,6 @@ const userSchema = new Schema(
         type: Schema.Types.ObjectId,
         ref: 'Event'
       }
-    ],
-    attendee: [
-      {
-        type: Schema.Types.ObjectId,
-        ref: 'User'
-      }
     ]
   },
   {
@@ -56,9 +50,6 @@ userSchema.pre('save', async function(next) {
     return bcrypt.compare(password, this.password);
   };
   
-  userSchema.virtual('attendeeCount').get(function() {
-    return this.attendee.length;
-  });
   
   const User = model('User', userSchema);
   

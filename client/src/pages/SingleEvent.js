@@ -3,11 +3,17 @@ import { useParams } from 'react-router-dom';
 // import Auth from '../utils/auth';
 import CommentList from '../componets/commentList';
 // import CommentForm from '../componets/commentForm';
-import { useQuery } from '@apollo/client';
+import { useQuery, useMutation } from '@apollo/client';
 import { QUERY_EVENT } from '../utils/queries';
+import AttendeeList from '../componets/attendeeList';
+import { ADD_ATTENDEE } from '../utils/mutations';
+
 
 
 const SingleEvent = (props) => {
+ 
+  const [addAttendee] = useMutation(ADD_ATTENDEE);
+
     const { id: eventId } = useParams();
   
     const { loading, data } = useQuery(QUERY_EVENT, {
@@ -19,9 +25,21 @@ const SingleEvent = (props) => {
     if (loading) {
       return <div>Loading...</div>;
     }
-  
+    const handleClick = async () => {
+      try {
+        await addAttendee({
+          variables: { attending:true, eventId }
+        });
+      } catch (e) {
+        console.error(e);
+      }
+    };
+
     return (
       <div>
+         <button  onClick={handleClick}>
+    Attending Event
+  </button>
         <div>
           <p>
             <span>{event.username}</span>
@@ -37,7 +55,9 @@ const SingleEvent = (props) => {
             {/* <p>{event.commentCount}</p> */}
             {/* <p>{event.eventText}</p> */}
             {/* attendees here */}
-
+          </div>
+          <div>
+          <AttendeeList attendees={event.attendees} eventTitle={event.eventTitle}/>
           </div>
         </div>
       

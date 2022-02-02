@@ -83,8 +83,8 @@ export const ADD_COMMENT = gql`
 `;
 
 export const ADD_ATTENDEE = gql`
-  mutation addAttendee($id: ID!) {
-    addAttendee(attendeeId: $id) {
+  mutation addAttendee($eventId: ID!, $attending: Boolean) {
+    addAttendee(eventId: $eventId, attending: $attending) {
       _id
       username
       attendeeCount

@@ -31,14 +31,12 @@ const resolvers = {
     users: async () => {
       return User.find()
         .select('-__v -password')
-        .populate('attendees')
         .populate('events');
     },
     // get a user by username
     user: async (parent, { username }) => {
       return User.findOne({ username })
         .select('-__v -password')
-        .populate('attendees')
         .populate('events');
     },
 
@@ -100,13 +98,13 @@ const resolvers = {
 
       throw new AuthenticationError('You need to be logged in!');
     },
-    addAttendee: async (parent, { attendeeId }, context) => {
+    addAttendee: async (parent, { eventId, attending }, context) => {
       if (context.user) {
-        const updatedUser = await User.findOneAndUpdate(
-          { _id: context.user._id },
-          { $addToSet: { attendee: attendeeId } },
+        const updatedUser = await Event.findOneAndUpdate(
+          { _id: eventId },
+          { $push: { attendees: {attending, username:context.user.username }} },
           { new: true }
-        ).populate('attendee');
+        );
 
         return updatedUser;
       }
@@ -126,7 +124,7 @@ const resolvers = {
     //     });
 
     //   return event;
-    },
+    // },
     // removeComment: async (parent, args) => {
     //   const comment = await Event.findByIdAndUpdate(
     //     { _id: args.event._id },
