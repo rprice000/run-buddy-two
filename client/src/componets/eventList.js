@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 // import { useQuery, useMutation } from '@apollo/client';
 // import { DELETE_EVENT } from '../utils/mutations';
 // import { QUERY_ME } from '../utils/queries';
-
+import { Card } from 'semantic-ui-react'
 
 const EventList = ({ events, title }) => {
   if (!events.length) {
@@ -44,23 +44,27 @@ const EventList = ({ events, title }) => {
 
 
   return (
+    
     <div>
       <h3>{title}</h3>
+      {/* <h3>you found me</h3> */}
       {events &&
         events.map(event => (
-          <div key={event._id} className="card mb-3">
-            <p className="card-header">
+          <Card>
+          <div key={event._id}>
+            <Card.Header>
               <Link
                 to={`/profile/${event.username}`}
                 style={{ fontWeight: 700 }}
-                className="text-light"
               >
                 {event.username}
               </Link>{' '}
-              event on {event.createdAt}
-            </p>
-            <div className="card-body">
+              <br></br>
+              Event Created On {event.createdAt}
+            </Card.Header>
+            <Card.Description>
               <Link to={`/event/${event._id}`}>
+                <p>{event.eventTitle}</p>
                 <p>{event.eventText}</p>
                 {/* <Button onClick={() => handleDeleteEvent(event.eventId)}>Delete this Event!</Button> */}
                 <p className="mb-0">
@@ -68,10 +72,12 @@ const EventList = ({ events, title }) => {
                   {event.commentCount ? 'see' : 'start'} the discussion!
                 </p>
               </Link>
-            </div>
+            </Card.Description>
           </div>
+          </Card>
         ))}
     </div>
+    
   );
 };
 

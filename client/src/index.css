@@ -11,6 +11,9 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+
+/* This is the home page symbols image */
 #hash-symbols {
   background-image: url("../public/images/hash-image.png");
   background-size: cover;
