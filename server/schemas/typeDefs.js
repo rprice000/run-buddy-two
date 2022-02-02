@@ -57,6 +57,7 @@ type Event {
     addComment(eventId: ID!, commentBody: String!): Event
     addAttendee(attendeeId: ID!): User
     removeEvent(eventId: ID!): Event
+    removeComment(commentId: ID!): Comment
   }
 
   type Auth {
