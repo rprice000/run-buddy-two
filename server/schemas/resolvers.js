@@ -126,15 +126,16 @@ const resolvers = {
     //     });
 
     //   return event;
-    },
-    // removeComment: async (parent, args) => {
-    //   const comment = await Event.findByIdAndUpdate(
-    //     { _id: args.event._id },
-    //     { $pull: { comments: { commentId: args.commentId } } }
-    //   );
-    //   return comment;
+    //},
+    updateComment: async (parent, {commentId, commentBody}) => {
+      const comment = await Comment.findByIdAndUpdate(
+        { _id: commentId},
+        { comments: commentBody },
+        { new:true }
+      );
+      return comment;
 
-    // }
+    }
   }
 };
 
