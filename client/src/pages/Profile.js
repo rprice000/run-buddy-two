@@ -38,44 +38,6 @@ const Profile = (props) => {
       </h4>
     );
   }
-
-
-//  const [event, setUserData] = useState({});
-//   const data = useQuery(QUERY_EVENT);
-
-//   const [deleteEvent] = useMutation(DELETE_EVENT)
-
-//   const event = data?.event || {};
-
-//   const userDataLength = Object.keys(event).length;
-
-
-//   const handleDeleteEvent = async (eventId) => {
-//     const token = Auth.loggedIn() ? Auth.getToken() : null;
-
-//     if (!token) {
-//       return false;
-//     }
-
-//     try {
-//       await deleteEvent({
-//         variables: { eventId }
-//       });
-
-//       deleteEventId(eventId);
-//     } catch (err) {
-//       console.error(err);
-//     }
-//   };
-//   setUserData(event);
-
-
-
-
-
-
-
-
   
     return (
       <div>
@@ -97,7 +59,6 @@ const Profile = (props) => {
             events={user.events}
             title={`${user.username}'s events...`}
           />
-          {/* <Button onClick={() => handleDeleteBook(event.eventId)}>Delete this Event!</Button> */}
         </div>
 
         {/* <div>
@@ -111,13 +72,6 @@ const Profile = (props) => {
       {/* <div className="mb-3">{!userParam && <ThoughtForm />}</div> */}
     </div>
     );
-
-
-
-
-
-
-
   };
   
   export default Profile;

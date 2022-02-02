@@ -17,7 +17,7 @@ const resolvers = {
         console.log(userData)
         return userData;
       }
-    
+
       throw new AuthenticationError('Not logged in');
     },
     events: async (parent, { username }) => {
@@ -44,118 +44,99 @@ const resolvers = {
 
     checkout: async (parent, args, context) => {
       const donation = new Donation({ donation: args.donation });
-      const updatedEvent = await Event.findByIdAndUpdate({_id: args.event_id}, {$push:{donations: donation._id}})
+      const updatedEvent = await Event.findByIdAndUpdate({ _id: args.event_id }, { $push: { donations: donation._id } })
       // const { donation } = await order.populate('donation').execPopulate();
     }
   },
-    Mutation: {
-      addUser: async (parent, args) => {
-        const user = await User.create(args);
-        const token = signToken(user);
-      
-        return { token, user };
-      },
-      login: async (parent, { username, password }) => {
-        const user = await User.findOne({ username });
-      
-        if (!user) {
-          throw new AuthenticationError('Incorrect credentials');
-        }
-      
-        const correctPw = await user.isCorrectPassword(password);
-      
-        if (!correctPw) {
-          throw new AuthenticationError('Incorrect credentials');
-        }
-      
-        const token = signToken(user);
-        return { token, user };
-      },
-      addEvent: async (parent, args, context) => {
-        console.log(args);
-        if (context.user) {
-          const event = await Event.create({ ...args, username: context.user.username });
-          console.log(event)
-          const updatedUser = await User.findByIdAndUpdate(
-            { _id: context.user._id },
-            { $push: { events: event._id } },
-            { new: true }
-          );
-            console.log(updatedUser);
-          return event;
-        }
-      
-        throw new AuthenticationError('You need to be logged in!');
-      },
+  Mutation: {
+    addUser: async (parent, args) => {
+      const user = await User.create(args);
+      const token = signToken(user);
 
-      // deleteEvent: async (parent, {eventId}, context) => {
-      //   if (context.user) {
-      //     const event = await User.findByIdAndUpdate(
-      //       {_id: context.user._id},
-      //       { $pull: {events: eventId}},
-      //       { new: true }
-      //     )
-      //     return event;
-      //   }
-      //   throw new AuthenticationError('You need to be logged in')
-      // },
-      
+      return { token, user };
+    },
+    login: async (parent, { username, password }) => {
+      const user = await User.findOne({ username });
 
-
-
-
-
-
-      addComment: async (parent, { eventId, commentBody }, context) => {
-        if (context.user) {
-          const updatedEvent = await Event.findOneAndUpdate(
-            { _id: eventId },
-            { $push: { comments: { commentBody, username: context.user.username } } },
-            { new: true, runValidators: true }
-          );
-      
-          return updatedEvent;
-        }
-      
-        throw new AuthenticationError('You need to be logged in!');
-      },
-      addAttendee: async (parent, { attendeeId }, context) => {
-        if (context.event) {
-          const updatedUser = await Event.findOneAndUpdate(
-            { _id: context.event._id },
-            { $addToSet: { attendee: attendeeId } },
-            { new: true }
-          ).populate('attendee');
-      
-          return updatedUser;
-        }
-      
-        throw new AuthenticationError('You need to be logged in!');
+      if (!user) {
+        throw new AuthenticationError('Incorrect credentials');
       }
-      
 
-      // addAttendee: async (parent, { attendeeId }, context) => {
-      //   if (context.user) {
-      //     const updatedUser = await User.findOneAndUpdate(
-      //       { _id: context.user._id },
-      //       { $addToSet: { attendee: attendeeId } },
-      //       { new: true }
-      //     ).populate('attendee');
-      
-      //     return updatedUser;
-      //   }
-      
-      //   throw new AuthenticationError('You need to be logged in!');
-      // }
-      
+      const correctPw = await user.isCorrectPassword(password);
 
+      if (!correctPw) {
+        throw new AuthenticationError('Incorrect credentials');
+      }
 
+      const token = signToken(user);
+      return { token, user };
+    },
+    addEvent: async (parent, args, context) => {
+      console.log(args);
+      if (context.user) {
+        const event = await Event.create({ ...args, username: context.user.username });
+        console.log(event)
+        const updatedUser = await User.findByIdAndUpdate(
+          { _id: context.user._id },
+          { $push: { events: event._id } },
+          { new: true }
+        );
+        console.log(updatedUser);
+        return event;
+      }
 
+      throw new AuthenticationError('You need to be logged in!');
+    },
+    addComment: async (parent, { eventId, commentBody }, context) => {
+      if (context.user) {
+        const updatedEvent = await Event.findOneAndUpdate(
+          { _id: eventId },
+          { $push: { comments: { commentBody, username: context.user.username } } },
+          { new: true, runValidators: true }
+        );
 
+        return updatedEvent;
+      }
 
+      throw new AuthenticationError('You need to be logged in!');
+    },
+    addAttendee: async (parent, { attendeeId }, context) => {
+      if (context.user) {
+        const updatedUser = await User.findOneAndUpdate(
+          { _id: context.user._id },
+          { $addToSet: { attendee: attendeeId } },
+          { new: true }
+        ).populate('attendee');
 
+        return updatedUser;
+      }
+
+      throw new AuthenticationError('You need to be logged in!');
+    },
+    removeEvent: async (parent, { eventId }) => {
+      const event = await Event.findByIdAndDelete(
+        { _id: eventId },
+        function (err, docs) {
+          if (err) {
+            console.log(err)
+          }
+          else {
+            console.log("Deleted User : ", docs);
+          }
+        });
+
+return event;
     }
-  };
+
+  }
+};
+
+// removeComment: async (parent, args) => {
+//   const comment = await Event.findByIdAndUpdate(
+//     { _id: args.case_id },
+//     { $pull: { comments: { commentId: args.commentId } } }
+//   );
+//   return comment;
 
 
 
@@ -166,6 +147,7 @@ const resolvers = {
 //   }
 
 // },
+
 
 
 // deleteEvent: async (parent, args, context) => {

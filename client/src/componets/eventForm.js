@@ -28,11 +28,11 @@ const EventForm = () => {
   // console.log(user);
   
   
+
   const [characterCount, setCharacterCount] = useState(0);
   // const [addEvent, { error }] = useMutation(ADD_EVENT, {
     const [ addEvent ] = useMutation(ADD_EVENT, {
     update(cache, { data: { addEvent } }) {
-    // console.log('user', user)
       console.log('addEvent', addEvent)
       try {
         // could potentially not exist yet, so wrap in a try...catch
@@ -57,7 +57,7 @@ const EventForm = () => {
 
   const handleChange = event => {
     if (event.target.value.length <= 280) {
-      // setText(event.target.value);
+
       setCharacterCount(event.target.value.length);
     }
   };
@@ -90,6 +90,7 @@ const EventForm = () => {
       // clear form value
       // setText("");
       // goHome();
+
       setCharacterCount(0);
     } catch (e) {
       console.error(e);
@@ -135,7 +136,6 @@ const EventForm = () => {
               placeholder="Please describe your running event..."
               ref={eventText}
               onChange={handleChange}
-              // value={eventText}
             />
             <p className={`m-0 ${characterCount === 280 ? "text-error" : ""}`}>
               Character Count: {characterCount}/280
