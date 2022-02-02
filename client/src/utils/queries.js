@@ -14,12 +14,12 @@ export const QUERY_USER = gql`
     #     _id
     #     username
     #   }
-      events {
-        _id
-        eventText
-        createdAt
-        commentCount
-      }
+      #events {
+        #_id
+      #  eventText
+       # createdAt
+       # commentCount
+      #}
     }
   }
 `;

@@ -66,38 +66,6 @@ export const ADD_EVENT = gql`
   }
 `;
 
-export const DELETE_EVENT = gql`
-  mutation deleteEvent(
-    $eventText: String!
-    $eventTitle: String!
-    $startAddress: String!
-    $endAddress: String!
-    $runDate: String!
-    ) {
-    deleteEvent(eventText: $eventText
-       eventTitle: $eventTitle
-       startAddress: $startAddress
-       endAddress: $endAddress
-       runDate: $runDate
-       
-       
-    ) {
-      _id
-      eventText
-      createdAt
-      eventTitle
-      startAddress
-      endAddress
-      runDate
-      username
-      # commentCount
-      # comments {
-      #   _id
-      # }
-    }
-  }
-`;
-
 
 export const ADD_COMMENT = gql`
   mutation addComment($eventId: ID!, $commentBody: String!) {
@@ -145,4 +113,25 @@ export const ADD_ORDER = gql`
       }
     }
   }
+`;
+
+
+export const REMOVE_EVENT = gql`
+mutation removeEvent($eventId: ID!) {
+  removeEvent(eventId: $eventId ) {
+    _id
+    username
+    eventText
+    eventTitle
+    startAddress
+    endAddress
+    runDate
+    comments {
+      _id
+        commentBody
+        createdAt
+        username
+    }
+  }
+}
 `;
