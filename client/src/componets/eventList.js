@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom';
 // import { DELETE_EVENT } from '../utils/mutations';
 // import { QUERY_ME } from '../utils/queries';
 
+
 const EventList = ({ events, title }) => {
   if (!events.length) {
     return <h3>No Events Yet</h3>;
