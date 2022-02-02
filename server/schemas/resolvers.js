@@ -113,31 +113,31 @@ const resolvers = {
 
       throw new AuthenticationError('You need to be logged in!');
     },
-    removeEvent: async (parent, { eventId }) => {
-      const event = await Event.findByIdAndDelete(
-        { _id: eventId },
-        function (err, docs) {
-          if (err) {
-            console.log(err)
-          }
-          else {
-            console.log("Deleted User : ", docs);
-          }
-        });
+    // removeEvent: async (parent, args) => {
+    //   const event = await Event.findByIdAndUpdate(
+    //     { _id: eventId },
+    //     function (err, docs) {
+    //       if (err) {
+    //         console.log(err)
+    //       }
+    //       else {
+    //         console.log("Deleted User : ", docs);
+    //       }
+    //     });
 
-return event;
+    //   return event;
+    //},
+    updateComment: async (parent, {commentId, commentBody}) => {
+      const comment = await Comment.findByIdAndUpdate(
+        { _id: commentId},
+        { comments: commentBody },
+        { new:true }
+      );
+      return comment;
+
     }
-
   }
 };
-
-// removeComment: async (parent, args) => {
-//   const comment = await Event.findByIdAndUpdate(
-//     { _id: args.case_id },
-//     { $pull: { comments: { commentId: args.commentId } } }
-//   );
-//   return comment;
-
 
 
 

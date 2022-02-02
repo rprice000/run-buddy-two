@@ -82,6 +82,21 @@ export const ADD_COMMENT = gql`
   }
 `;
 
+export const UPDATE_COMMENT = gql`
+  mutation updateComment($commentId: ID!, $commentBody: String!) {
+    updateComment(commentId: $commentId, commentBody: $commentBody) {
+      _id
+      comments {
+        _id
+        commentBody
+        createdAt
+        username
+      }
+    }
+  }
+`;
+
+
 export const ADD_ATTENDEE = gql`
   mutation addAttendee($id: ID!) {
     addAttendee(attendeeId: $id) {
