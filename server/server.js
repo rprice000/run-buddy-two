@@ -9,7 +9,7 @@ const db = require('./config/connection');
 const { authMiddleware } = require('./utils/auth');
 
 const PORT = process.env.PORT || 3001;
-const MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/3001";
+const MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/running-on-empty";
 const app = express();
 
 const startServer = async () => {
