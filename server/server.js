@@ -1,13 +1,15 @@
 const express = require('express');
 // import ApolloServer
 const { ApolloServer } = require('apollo-server-express');
-
+const path = require('path');
+const mongoose = require("mongoose");
 // import our typeDefs and resolvers
 const { typeDefs, resolvers } = require('./schemas');
 const db = require('./config/connection');
 const { authMiddleware } = require('./utils/auth');
 
 const PORT = process.env.PORT || 3001;
+const MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/running-on-empty";
 const app = express();
 
 const startServer = async () => {
@@ -15,7 +17,8 @@ const startServer = async () => {
   const server = new ApolloServer({ 
     typeDefs, 
     resolvers, 
-    context: authMiddleware 
+    context: authMiddleware,
+    // context: ({ req }) => req.headers 
   });
 
   // Start the Apollo server
@@ -33,6 +36,11 @@ startServer();
 
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
+
+mongoose.connect(MONGODB_URI, {
+  useNewUrlParser: true,
+  useFindAndModify: false
+});
 
 
 
@@ -58,20 +66,20 @@ app.use(express.json());
 // app.use(express.json());
 
 
-// if (process.env.NODE_ENV === 'production') {
-//   app.use(express.static(path.join(__dirname, '../client/build')));
-// }
+if (process.env.NODE_ENV === 'production') {
+  app.use(express.static(path.join(__dirname, '../client/build')));
+}
 
-// app.get('*', (req, res) => {
-//   res.sendFile(path.join(__dirname, '../client/build/index.html'));
-// });
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, '../client/build/index.html'));
+});
 
-// db.once('open', () => {
-//   app.listen(PORT, () => {
-//     console.log(`API server running on port ${PORT}!`);
-//     console.log(`Use GraphQL at http://localhost:${PORT}${server.graphqlPath}`);
-//   });
-// });
+db.once('open', () => {
+  app.listen(PORT, () => {
+    console.log(`API server running on port ${PORT}!`);
+    // console.log(`Use GraphQL at http://localhost:${PORT}${server.graphqlPath}`);
+  });
+});
 
 
 // const path = require('path');
@@ -123,8 +131,8 @@ app.use(express.json());
 //   res.sendFile(path.join(__dirname, '../client/build/index.html'));
 // });
 
-db.once('open', () => {
-  app.listen(PORT, () => {
-    console.log(`API server running on port ${PORT}!`);
-  });
-});
+// db.once('open', () => {
+//   app.listen(PORT, () => {
+//     console.log(`API server running on port ${PORT}!`);
+//   });
+// });

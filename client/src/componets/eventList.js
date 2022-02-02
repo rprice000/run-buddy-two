@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import DeleteButton from './DeleteEvent';
 
 
+
 const EventList = ({ events, title }) => {
   
   if (!events.length) {

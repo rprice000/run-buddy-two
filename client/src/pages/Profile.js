@@ -3,8 +3,12 @@ import { Redirect, useParams } from 'react-router-dom';
 // import EventForm from '../components/EventForm';
 import EventList from '../componets/eventList';
 import Auth from '../utils/auth';
-import { useQuery } from '@apollo/client';
-import { QUERY_USER, QUERY_ME, QUERY_ME_BASIC } from '../utils/queries';
+import { useQuery} from '@apollo/client';
+// import { useQuery, useMutation } from '@apollo/client';
+import { QUERY_USER, QUERY_ME } from '../utils/queries';
+// import { QUERY_USER, QUERY_ME, QUERY_ME_BASIC } from '../utils/queries';
+// import { QUERY_USER, QUERY_ME, QUERY_ME_BASIC, QUERY_EVENT } from '../utils/queries';
+// import { DELETE_EVENT } from '../utils/mutations';
 
 const Profile = (props) => {
     const { username: userParam } = useParams();

@@ -14,7 +14,7 @@ import SingleEvent from './pages/SingleEvent';
 
 //connection to the back-end server's /graphql
 const httpLink = createHttpLink({
-  uri: 'http://localhost:3001/graphql',
+  uri: '/graphql',
 });
 
 const authLink = setContext((_, { headers }) => {
