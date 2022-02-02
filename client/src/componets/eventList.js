@@ -7,6 +7,14 @@ import { QUERY_ME } from '../utils/queries';
 
 const EventList = ({ events, title, pageName }) => {
 
+<<<<<<< HEAD
+=======
+
+const EventList = ({ events, title }) => {
+  if (!events.length) {
+    return <h3>No Events Yet</h3>;
+  }
+>>>>>>> origin/reagan
 
   if (!events.length) {
  <h3>No Events Yet</h3>;
