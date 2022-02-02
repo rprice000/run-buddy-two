@@ -5,11 +5,13 @@ import EventList from '../componets/eventList';
 import Auth from '../utils/auth';
 import { useQuery} from '@apollo/client';
 // import { useQuery, useMutation } from '@apollo/client';
-import { QUERY_USER, QUERY_ME, QUERY_ME_BASIC } from '../utils/queries';
-// import { QUERY_USER, QUERY_ME, QUERY_ME_BASIC, QUERY_EVENT } from '../utils/queries';
+//import { QUERY_USER, QUERY_ME, QUERY_ME_BASIC } from '../utils/queries';
+import { QUERY_USER, QUERY_ME, QUERY_ME_BASIC, QUERY_EVENT } from '../utils/queries';
 // import { DELETE_EVENT } from '../utils/mutations';
 
-const Profile = (props) => {
+
+  const Profile = (props) => {
+    const pageName='profile'
     const { username: userParam } = useParams();
     console.log(userParam);
 
@@ -93,10 +95,13 @@ const Profile = (props) => {
 
       <div>
         <div>
-          <EventList
+            <EventList
+              pageName ={pageName}
             events={user.events}
             title={`${user.username}'s events...`}
           />
+     
+
           {/* <Button onClick={() => handleDeleteBook(event.eventId)}>Delete this Event!</Button> */}
         </div>
 
