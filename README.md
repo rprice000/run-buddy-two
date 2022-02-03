@@ -1,36 +1,89 @@
-README INFO
+# Running On Empty
 
-Your project should fulfill the following requirements:
 
-- Use React for the front end.
+# Project Title
+Running On Empty
 
-- Use GraphQL with a Node.js and Express.js server.
+## Description
+Running-On-Empty can best be described as a scavenger hunt performed by a band of misfits looking to kill an afternoon and have a few drinks. A run starts at a single location (bar, garage, or local park) and a trail will be made with a batch of marks laid by the one (or two) individual(s). The marks on the ground will determine what happens at each point along the run. Runs are typically a distance from 2 to 4 miles (weather depending).All running events are determined by the event creator.  To create an event users will need to create an account throught this app. Feel free to spice things up such as making a theme for the run.
 
-- Use MongoDB and the Mongoose ODM for the database.
 
-- Use queries and mutations for retrieving, adding, updating, and deleting data.
+## Table of Contents
+* [Installation](#installation)
+* [Technologies](#technologies)
+* [Testing](#testing)
+* [Screenshots](#screenshots)
+* [Links](#links)
+* [Version](#version)
+* [Authors](#authors)
+* [License](#license)
 
-- Be deployed using Heroku (with data).
+## Installation
+Root Directory Run the following:
+- npm install
+- npm i concurrently
 
-- Have a polished UI.
+Server Directory run the following:
+- npm i apollo-server-express graphql
+- npm i express
+- npm i bycrypt
+- npm i jsonwebtoken
+- npm i mongoose
+- npm i stripe
 
-- Be responsive.
+Client Directoyr run the following:
+- npm create-react-app
+- npm i @apollo/client graphql
+- npm i react-delay-link
+- npm i semantic-ui-css
+- npm i semantic-ui-react
 
-- Be interactive (i.e., accept and respond to user input).
+## Technologies
+- React.js
+- Express.js
+- Apollo Server
+- Graphql
+- MongoDB
+- Node.JS
+- HTML5
+- CSS
+- Semantic UI
+- Stripe
+- HerokU
 
-- Include authentication (JWT).
+## Testing
+There are not testing dependencies for this application
 
-- Protect sensitive API key information on the server.
+## Screenshots
+- All screenshots are located in the following folders.
+/client/public/images/screenshots/..
 
-- Have a clean repository that meets quality coding standards (file structure, naming conventions, best practices for class and id naming conventions, indentation, high-quality comments, etc.).
+## Links
+GitHub Repo
+https://github.com/rprice000/running-on-empty
 
-- Have a high-quality README (with unique name, description, technologies used, screenshot, and link to deployed application).
+Deployed Github Page
+https://gentle-depths-07774.herokuapp.com/
 
-============ BONUS =====================
-- Uses a web manifest
 
-- Uses a service worker for offline functionality
 
-- Is installable
+## Version
 
-- Consider integrating the Stripe payment platform. Even if you don’t create an e-commerce application, you could set up your site to accept charitable donations.
+- 1.0.0
+
+## Authors
+
+- name: Jenny Devane
+- github account: jendevane
+
+- Lesly Gonzalez
+- Github account: leslyr562
+
+- name: Reagan Price
+- github account: rprice000
+
+
+## License
+
+- This project is licensed under the Rice University Software Developer Coding BootCamp.
+

@@ -16,7 +16,7 @@ function Nav() {
               </Menu.Item>
               <Menu.Item >
                 <Link to="/profile">
-                <div class="navItem">Profile</div>
+                <div class="navItem">Your Events</div>
                 </Link>
               </Menu.Item>
               <Menu.Item >
@@ -24,11 +24,11 @@ function Nav() {
                 <div class="navItem">Create Event</div>
                 </Link>
               </Menu.Item>
-              <Menu.Item>
+              {/* <Menu.Item>
                 <Link to="/donations">
                 <div class="navItem">Donations</div>
                 </Link>
-              </Menu.Item>
+              </Menu.Item> */}
               <Menu.Item >
                 {/* this is not using the Link component to logout or user and then refresh the application to the start */}
                 <a href="/" onClick={() => Auth.logout()}>

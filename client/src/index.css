@@ -90,7 +90,7 @@ code {
 
 #profileView {
   margin:0;
-  height: 1000px;;
+  height: 575px;
   background-size: cover;
   padding-top: 30px;
   padding-bottom: 30px;
@@ -127,7 +127,7 @@ code {
   bottom: 0;
   width: 100%;
   text-align: center;
-
+  color: var(--fifth-color);
 }
 
 #signUpFormView {
@@ -154,6 +154,7 @@ code {
 
 #singleEventView {
   background-color: var(--third-color);
+  padding-top: 50px;
 }
 
 #commentSubmitButton {
@@ -183,4 +184,10 @@ code {
 
 #attendingEventList {
   padding-top: 10px;
+  color: var(--fifth-color);
+}
+
+
+#attendingEvent {
+  color: var(--fifth-color);
 }

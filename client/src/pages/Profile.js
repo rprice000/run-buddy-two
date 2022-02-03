@@ -46,7 +46,7 @@ const Profile = (props) => {
     return (
       <div id="profileView">
       <Container>
-        <h1 id="profileText">Viewing {userParam ? `${user.username}'s` : `${user.username}'s`} profile.</h1>
+        <h1 id="profileText">Viewing {userParam ? `${user.username}'s` : `${user.username}'s`} Events.</h1>
 
         {/* {userParam && (
           <button className="btn ml-auto" onClick={handleClick}>

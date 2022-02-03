@@ -48,9 +48,9 @@ const SingleEvent = (props) => {
           <Button onClick={handleClick}>Attending Event</Button>
         </div>
       ) : (
-        <p>You are attending this event!</p>
+        <p><div id="attendingEvent">You are attending this event!</div></p>
       )}
-      <div ID="attendingEventList">
+      <div id="attendingEventList">
         <AttendeeList
           attendees={event.attendees}
           eventTitle={event.eventTitle}
