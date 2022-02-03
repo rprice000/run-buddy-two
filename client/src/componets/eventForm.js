@@ -2,7 +2,7 @@ import React, { useState, useRef } from 'react';
 import { useMutation } from '@apollo/client';
 import { ADD_EVENT } from '../utils/mutations';
 import { QUERY_EVENTS, QUERY_ME } from '../utils/queries';
-import { Form, Button, Grid } from 'semantic-ui-react'
+import { Form, Button, Grid, Container } from 'semantic-ui-react'
 // import Auth from '../utils/auth';
 //  import { useNavigate } from 'react-router-dom'
 // import { useHistory } from "react-router-dom";
@@ -102,6 +102,9 @@ const EventForm = () => {
 
   
   return (
+    <div>
+      <h1 id="eventFormTitle"> New Event Form</h1>
+      <Container>
     <Grid columns="three">
       <Grid.Row>
         <Grid.Column width={3}></Grid.Column>
@@ -153,6 +156,8 @@ const EventForm = () => {
         <Grid.Column width={3}></Grid.Column>
       </Grid.Row>
     </Grid>
+    </Container>
+    </div>
   );
 };
 

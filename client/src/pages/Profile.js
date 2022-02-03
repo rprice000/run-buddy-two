@@ -6,9 +6,11 @@ import Auth from '../utils/auth';
 import { useQuery} from '@apollo/client';
 // import { useQuery, useMutation } from '@apollo/client';
 import { QUERY_USER, QUERY_ME } from '../utils/queries';
+import { Container } from 'semantic-ui-react';
 // import { QUERY_USER, QUERY_ME, QUERY_ME_BASIC } from '../utils/queries';
 // import { QUERY_USER, QUERY_ME, QUERY_ME_BASIC, QUERY_EVENT } from '../utils/queries';
 // import { DELETE_EVENT } from '../utils/mutations';
+
 
 const Profile = (props) => {
     const { username: userParam } = useParams();
@@ -41,24 +43,22 @@ const Profile = (props) => {
   }
   
     return (
-      <div>
-      <div>
-        <h2>
-          Viewing {userParam ? `${user.username}'s` : "your"} profile.
-        </h2>
+      <div id="profileView">
+      <Container>
+        <h1 id="profileText">Viewing {userParam ? `${user.username}'s` : `${user.username}'s`} profile.</h1>
 
         {/* {userParam && (
           <button className="btn ml-auto" onClick={handleClick}>
             Add Friend
           </button>
         )} */}
-      </div>
+      </Container>
 
       <div>
-        <div>
+        <div> 
           <EventList
             events={user.events}
-            title={`${user.username}'s events...`}
+            title={`List Of ${user.username}'s Events`}
           />
         </div>
 

@@ -6,7 +6,8 @@ import { QUERY_EVENTS } from '../utils/queries';
 //   NEED THIS IMPORT FOR ATTENDEES
 // import { QUERY_EVENTS, QUERY_ME_BASIC } from '../utils/queries';
 import { useQuery } from '@apollo/client';
-import { Grid } from "semantic-ui-react";
+import { Grid, Container } from "semantic-ui-react";
+import Jumbotron from "../componets/jumboTron";
 
 
 const Home = () => {
@@ -18,16 +19,19 @@ const Home = () => {
 
 
     return (
-      <main>
+      <div id="homeDiv">
+        <Jumbotron>
+      </Jumbotron>
+      <Container id="homeContent">
         <Grid columns="two">
           <Grid.Row>
             <Grid.Column mobile={16} tablet={16} computer={8}>
-              <h3>Welcome to the app for drinkers with a running problem... </h3>
+              <h1 class="homeText">Welcome to the app for drinkers with a running problem... </h1>
               <img src= "images/hash-image.png" alt="hash symbols" width="400" height="200"/>
             </Grid.Column>
             <Grid.Column mobile={16} tablet={16} computer={8}>
-              <h4> What is Running-On-Empty? </h4>
-              <p>
+              <h1 class="homeText"> What is Running-On-Empty? </h1>
+              <p class="homeText">
                     Running-On-Empty can best be described as a scavenger hunt performed by a band of misfits looking to kill 
                     an afternoon and have a few drinks. A run starts at a single location 
                     (bar, garage, or local park) and a trail will be made with a batch of marks laid by the one (or two) individual(s). 
@@ -44,21 +48,20 @@ const Home = () => {
             <EventForm />
           </div>
         )} */}
-          <Grid columns="three">
-            <Grid.Row>
-              <Grid.Column></Grid.Column>
-              <Grid.Column>
-                <div>
+          
+                {/* <div class="homeText" id="eventList">
                   {loading ? (
                     <div>Loading...</div>
                   ) : (
                     <EventList events={events} title="List of Running Events" />
                   )}
-                </div>
-              </Grid.Column>
-              <Grid.Column></Grid.Column>
-            </Grid.Row>
-          </Grid>
+                </div> */}
+
+
+
+                
+                    <EventList events={events} title="List of Running Events"/>
+              
 
           {/* {loggedIn && userData ? (
           // <div className="col-12 col-lg-3 mb-3">
@@ -70,7 +73,8 @@ const Home = () => {
           // </div>
         ) : null} */}
         </div>
-      </main>
+      </Container>
+      </div>
     );
   };
   
