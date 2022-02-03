@@ -7,17 +7,6 @@ const AttendeeList = ({ attendees }) => {
     return <p>{attendees.length} attending!</p>;
   }
 
-//   function removeDups(attendees) {
-//     let unique = {};
-//     attendees.forEach(function(i) {
-//       if(!unique[i]) {
-//         unique[i] = true;
-//       }
-//     });
-//     return Object.keys(unique);
-//   }
-  
-//   removeDups(attendees);
 
   return (
     <div>
