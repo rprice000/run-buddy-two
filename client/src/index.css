@@ -78,6 +78,9 @@ code {
 }
 
 #profileView {
+  margin:0;
+  height: 1000px;;
+  background-size: cover;
   padding-top: 30px;
   padding-bottom: 30px;
   background-color: var(--third-color);
