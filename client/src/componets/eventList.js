@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import DeleteButton from './DeleteEvent';
 
 
+
 const EventList = ({ events, title }) => {
   
   if (!events.length) {
@@ -32,8 +33,8 @@ const EventList = ({ events, title }) => {
                   Comments: {event.commentCount} || Click to{' '}
                   {event.commentCount ? 'see' : 'start'} the discussion!
                 </p>
-                <DeleteButton eventId={event._id}></DeleteButton>
               </Link>
+              <DeleteButton eventId={event._id} />
             </div>
           </div>
         ))}

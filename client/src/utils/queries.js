@@ -9,17 +9,12 @@ export const QUERY_USER = gql`
       _id
       username
       email
-    #   attendeeCount
-    #   friends {
-    #     _id
-    #     username
-    #   }
-      #events {
-        #_id
-      #  eventText
-       # createdAt
-       # commentCount
-      #}
+      events {
+        _id
+        eventText
+        createdAt
+        commentCount
+      }
     }
   }
 `;

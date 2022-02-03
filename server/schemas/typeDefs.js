@@ -5,7 +5,7 @@ const { gql } = require('apollo-server-express');
 const typeDefs = gql`
 
  type User {
-     _id: ID
+    _id: ID
     username: String
     email: String
     events: [Event]
@@ -63,7 +63,7 @@ type Event {
     addComment(eventId: ID!, commentBody: String!): Event
     addAttendee(eventId: ID!, attending: Boolean): Event
     removeEvent(eventId: ID!): Event
-    removeComment(commentId: ID!): Comment
+    #updateComment(commentId: ID!, commentBody: String!): Comment
   }
 
   type Auth {

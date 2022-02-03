@@ -58,10 +58,10 @@ export const ADD_EVENT = gql`
       endAddress
       runDate
       username
-      # commentCount
-      # comments {
-      #   _id
-      # }
+      commentCount
+      comments {
+        _id
+      }
     }
   }
 `;
@@ -81,6 +81,16 @@ export const ADD_COMMENT = gql`
     }
   }
 `;
+
+export const UPDATE_COMMENT = gql`
+  mutation updateComment($commentId: ID!, $commentBody: String!) {
+    updateComment(commentId: $commentId, commentBody: $commentBody) {
+      _id
+      commentBody
+    }
+  }
+`;
+
 
 export const ADD_ATTENDEE = gql`
   mutation addAttendee($eventId: ID!, $attending: Boolean) {

@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
-
 import { useMutation } from '@apollo/client';
-import { ADD_COMMENT } from '../../utils/mutations';
+import { ADD_COMMENT } from '../utils/mutations';
 
 const CommentForm = ({ eventId }) => {
     const [commentBody, setBody] = useState("");
@@ -53,6 +52,7 @@ const CommentForm = ({ eventId }) => {
         <button className="btn col-12 col-md-3" type="submit">
           Submit
         </button>
+       
       </form>
 
       {error && <div>Something went wrong...</div>}

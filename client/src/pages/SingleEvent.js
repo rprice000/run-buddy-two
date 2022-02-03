@@ -1,9 +1,9 @@
 import React, {useState} from 'react';
 import { useParams } from 'react-router-dom';
-// import Auth from '../utils/auth';
+import Auth from '../utils/auth';
 import CommentList from '../componets/commentList';
-// import CommentForm from '../componets/commentForm';
 import { useQuery, useMutation } from '@apollo/client';
+import CommentForm from '../componets/commentForm';
 import { QUERY_EVENT } from '../utils/queries';
 import AttendeeList from '../componets/attendeeList';
 import { ADD_ATTENDEE } from '../utils/mutations';
@@ -53,13 +53,12 @@ const SingleEvent = (props) => {
             Event Created On: {event.createdAt}
           </p>
           <div>
-            <p>{event.eventTitle}</p>
-            <p>{event.eventText}</p>
-            <p>{event.startAddress}</p>
-            <p>{event.endAddress}</p>
-            <p>{event.runDate}</p>
-            {/* <p>{event.commentCount}</p> */}
-            {/* <p>{event.eventText}</p> */}
+            <p>Run Event Title: {event.eventTitle}</p>
+            <p>Start Address: {event.startAddress}</p>
+            <p>End Address: {event.endAddress}</p>
+            <p>Run Date: {event.runDate}</p>
+            <p>Run Event Description: {event.eventText}</p>
+            <p>Comment Count: {event.commentCount}</p>
             {/* attendees here */}
           </div>
           <div>
@@ -71,7 +70,7 @@ const SingleEvent = (props) => {
         {event.commentCount > 0 && (
           <CommentList comments={event.comments} />
         )}
-        {/* {Auth.loggedIn() && <CommentForm eventId={event._id} />} */}
+        {Auth.loggedIn() && <CommentForm eventId={event._id} />}
       </div>
     );
   };
