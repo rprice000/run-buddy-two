@@ -6,6 +6,7 @@ import { setContext } from '@apollo/client/link/context';
 
 import Home from './pages/Home';
 import Nav from './componets/Nav';
+import Footer from './componets/footer';
 import Login from './pages/Login';
 import Signup from './pages/Signup';
 import Profile from './pages/Profile';
@@ -49,6 +50,7 @@ function App() {
               <Route exact path="/event/:id" component={SingleEvent} />
 
             </Switch>
+            <Footer />
           </StoreProvider>
         </div>
       </Router>

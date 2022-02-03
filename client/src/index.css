@@ -7,6 +7,17 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+:root {
+  --first-color: #7400B8;
+  --second-color: #5E60CE;
+  --third-color: #022c46;
+  --fourth-color: #56CFE1;
+  --fifth-color: #72EFDD;
+  --seventh-color: rgb(0, 0, 0);
+  --eight-color: rgb(255, 255, 255);
+}
+
+
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
@@ -15,4 +26,84 @@ code {
   background-image: url("../public/images/hash-image.png");
   background-size: cover;
   background-repeat: no-repeat;
+}
+
+#eventListTitle {
+  text-align: center;
+  padding-top: 50px;
+  padding-bottom: 50px;
+  color: var(--fifth-color);
+}
+
+#navBar {
+  background-color: var(--first-color);
+  padding-top: 25px;
+  padding-bottom: 20px;
+}
+
+#siteTitle {
+  color: var(--fifth-color);
+}
+
+.navItem {
+  color: var(--fifth-color);
+  font-weight: bolder;
+  font-size: medium;
+}
+
+#jumbo {
+  background-image: url("../public/images/wine-not.png");
+  background-size: cover;
+  background-repeat: no-repeat;
+  padding-bottom: 500px;
+  opacity: 0.75
+}
+
+#homeContent {
+  padding-top: 20px;
+}
+
+#homeDiv {
+  background-color: var(--third-color);
+  padding-bottom: 30px;
+}
+.homeText {
+  color: var(--fifth-color);
+}
+
+#eventFormTitle {
+  text-align: center;
+  padding-top: 50px;
+  padding-bottom: 50px;
+}
+
+#profileView {
+  padding-top: 30px;
+  padding-bottom: 30px;
+  background-color: var(--third-color);
+}
+
+#profileText {
+  color: var(--fifth-color);
+}
+
+#cardDateInfo {
+  color: black;
+}
+
+.cardText {
+  color: black;
+  font-weight: bolder;
+  font-size: medium;
+}
+
+#cardItem {
+  background-color: var(--fifth-color);
+}
+
+#footer {
+  background-color: var(--first-color);
+  padding-top: 20px;
+  padding-bottom: 20px;
+  text-align: center;
 }

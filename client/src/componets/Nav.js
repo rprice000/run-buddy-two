@@ -1,7 +1,7 @@
 import React from "react";
 import Auth from "../utils/auth";
 import { Link } from "react-router-dom";
-import { Grid, Menu } from 'semantic-ui-react'
+import { Grid, Menu, Container } from 'semantic-ui-react'
 
 function Nav() {
   
@@ -10,29 +10,29 @@ function Nav() {
           return (
             <Menu secondary>
               <Menu.Item >
+                <Link to="/">
+                 <div class="navItem">Home</div>
+                </Link>
+              </Menu.Item>
+              <Menu.Item >
                 <Link to="/profile">
-                  Profile
+                <div class="navItem">Profile</div>
                 </Link>
               </Menu.Item>
               <Menu.Item >
                 <Link to="/eventForm">
-                  Create Event
-                </Link>
-              </Menu.Item>
-              <Menu.Item >
-                <Link to="/calender">
-                 Calendar
+                <div class="navItem">Create Event</div>
                 </Link>
               </Menu.Item>
               <Menu.Item>
                 <Link to="/donations">
-                 Donations
+                <div class="navItem">Donations</div>
                 </Link>
               </Menu.Item>
               <Menu.Item >
                 {/* this is not using the Link component to logout or user and then refresh the application to the start */}
                 <a href="/" onClick={() => Auth.logout()}>
-                  Logout
+                <div class="navItem">Logout</div>
                 </a>
               </Menu.Item>
             </Menu>
@@ -42,12 +42,12 @@ function Nav() {
             <Menu secondary>
               <Menu.Item >
                 <Link to="/signup">
-                  Signup
+                <div class="navItem">Signup</div>
                 </Link>
               </Menu.Item>
               <Menu.Item >
                 <Link to="/login">
-                  Login
+                <div class="navItem">Login</div>
                 </Link>
               </Menu.Item>
             </Menu>
@@ -57,16 +57,18 @@ function Nav() {
     
 
 return (
+  <div id="navBar">
+  <Container>
   <Grid>
-    
     <Grid.Column mobile={16} tablet={12} computer={10}>
-        <h1><Link to="/">Running-On-Empty</Link></h1>
+        <Link to="/"><h1 id="siteTitle">Running-On-Empty</h1></Link>
         </Grid.Column>
         <Grid.Column mobile={16} tablet={4} computer={6}>
         <nav>{showNavigation()}</nav>
         </Grid.Column>
-    
   </Grid>
+  </Container>
+  </div>
 );
 
 }
