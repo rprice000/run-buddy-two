@@ -17,7 +17,10 @@ const DeleteButton = ({ eventId }) => {
       await removeEvent({
         variables: { eventId: eventId }
       });
+      window.location.reload();
     };
+ 
+
 
     return (
         <Button

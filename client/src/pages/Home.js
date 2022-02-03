@@ -2,7 +2,6 @@
 import React from "react";
 import EventList from '../componets/eventList';
 // import EventForm from '../componets/eventForm';
-import Auth from '../utils/auth';
 import { QUERY_EVENTS } from '../utils/queries';
 //   NEED THIS IMPORT FOR ATTENDEES
 // import { QUERY_EVENTS, QUERY_ME_BASIC } from '../utils/queries';
@@ -16,11 +15,6 @@ const Home = () => {
   // MAY NEED THIS FOR DISPLAYING ATTENDEES
   // const { data: userData } = useQuery(QUERY_ME_BASIC);
   const events = data?.events || [];
-
-  const loggedIn = Auth.loggedIn();
-
-
-
 
 
     return (
