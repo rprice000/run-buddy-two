@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import { useParams } from 'react-router-dom';
 // import Auth from '../utils/auth';
 import CommentList from '../componets/commentList';
@@ -12,6 +12,7 @@ import { ADD_ATTENDEE } from '../utils/mutations';
 
 const SingleEvent = (props) => {
  
+  const [disable, setDisable] = useState(false);
   const [addAttendee] = useMutation(ADD_ATTENDEE);
 
     const { id: eventId } = useParams();
@@ -27,8 +28,9 @@ const SingleEvent = (props) => {
     }
     const handleClick = async () => {
       try {
+        setDisable(true)
         await addAttendee({
-          variables: { attending:true, eventId }
+          variables: { eventId: eventId, attending:true }
         });
       } catch (e) {
         console.error(e);
@@ -37,9 +39,13 @@ const SingleEvent = (props) => {
 
     return (
       <div>
+        {!disable? (
          <button  onClick={handleClick}>
     Attending Event
   </button>
+        ): (
+          <p>You are attending this event!</p>
+        )}
         <div>
           <p>
             <span>{event.username}</span>
