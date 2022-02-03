@@ -35,15 +35,15 @@ function Login(props) {
 
 
   return (
-    <div>
+    <div id="loginFormView">
       <Grid columns="three">
         <Grid.Row>
           <Grid.Column></Grid.Column>
           <Grid.Column>
-            <h2>Login</h2>
+            <h2 class="loginInputDescriptions">Login</h2>
             <Form onSubmit={handleFormSubmit}>
               <Form.Field>
-                <label htmlFor="username">Username:</label>
+                <label htmlFor="username"><div class="loginInputDescriptions">Username:</div></label>
                 <input
                   placeholder="username"
                   name="username"
@@ -54,7 +54,7 @@ function Login(props) {
                 />
               </Form.Field>
               <Form.Field>
-                <label htmlFor="pwd">Password:</label>
+                <label htmlFor="pwd"><div class="loginInputDescriptions">Password:</div></label>
                 <input
                   placeholder="******"
                   name="password"

@@ -41,15 +41,15 @@ const Signup = () => {
   };
 
   return (
-    <div>
+    <div id="signUpFormView">
       <Grid columns="three">
         <Grid.Row>
           <Grid.Column></Grid.Column>
           <Grid.Column>
-            <h2>Sign Up</h2>
+            <h2 class="signUpInputDescriptions">Sign Up</h2>
             <Form onSubmit={handleFormSubmit}>
               <Form.Field>
-              <label htmlFor="username">Username:</label>
+              <label htmlFor="username"><div class="signUpInputDescriptions">Username:</div></label>
                 <input
                   placeholder="Your username"
                   name="username"
@@ -60,7 +60,7 @@ const Signup = () => {
                 />
               </Form.Field>
               <Form.Field>
-              <label htmlFor="email">Email address:</label>
+              <label htmlFor="email"><div class="signUpInputDescriptions">Email address:</div></label>
                 <input
                   placeholder="Your email"
                   name="email"
@@ -71,7 +71,7 @@ const Signup = () => {
                 />
               </Form.Field>
               <Form.Field>
-              <label htmlFor="pwd">Password:</label>
+              <label htmlFor="pwd"><div class="signUpInputDescriptions">Password:</div></label>
                 <input
                   placeholder="******"
                   name="password"
