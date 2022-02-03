@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useMutation } from '@apollo/client';
 import { ADD_COMMENT } from '../utils/mutations';
+import { Button, Form } from 'semantic-ui-react'
 
 const CommentForm = ({ eventId }) => {
     const [commentBody, setBody] = useState("");
@@ -32,30 +33,23 @@ const CommentForm = ({ eventId }) => {
 
   return (
     <div>
-      <p
-        className={`m-0 ${characterCount === 280 || error ? 'text-error' : ''}`}
-      >
-        Character Count: {characterCount}/280
-        {error && <span className="ml-2">Something went wrong...</span>}
-      </p>
-      <form
-        className="flex-row justify-center justify-space-between-md align-stretch"
-        onSubmit={handleFormSubmit}
-      >
+      <Form onSubmit={handleFormSubmit}>
         <textarea
           placeholder="Leave a comment to this event!!"
           value={commentBody}
-          className="form-input col-12 col-md-9"
           onChange={handleChange}
         ></textarea>
-
-        <button className="btn col-12 col-md-3" type="submit">
-          Submit
-        </button>
+        <div id="commentSubmitButton">
+        <Button type="submit">Submit</Button>
+        </div>
+        <p className={`m-0 ${characterCount === 280 || error ? 'text-error' : ''}`}>
+        <div class="commentDescriptions">Character Count: {characterCount}/280</div>
+        {error && <span>Something went wrong...</span>}
+      </p>
        
-      </form>
-
-      {error && <div>Something went wrong...</div>}
+      </Form>
+      {error && <div class="commentDescriptions">Something went wrong...</div>}
+   
     </div>
   );
 };

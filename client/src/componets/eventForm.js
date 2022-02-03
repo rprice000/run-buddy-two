@@ -102,7 +102,7 @@ const EventForm = () => {
 
   
   return (
-    <div>
+    <div id="eventFormView">
       <h1 id="eventFormTitle"> New Event Form</h1>
       <Container>
     <Grid columns="three">
@@ -111,7 +111,7 @@ const EventForm = () => {
         <Grid.Column width={10}>
           <Form>
             <Form.Field  >
-              <label>Run Title</label>
+              <label><div class="formInputDescriptions">Run Title</div></label>
               <input ref={eventTitle}
                 placeholder="Run Title"
 
@@ -120,18 +120,18 @@ const EventForm = () => {
             </Form.Field>
 
             <Form.Field >
-              <label>Date of Run</label>
+              <label class="formInputDescriptions"><div class="formInputDescriptions">Date of Run</div></label>
               <input ref={runDate}
                 placeholder="Date of Run" />
             </Form.Field>
 
             <Form.Field>
-              <label>Start Address</label>
+              <label class="formInputDescriptions"><div class="formInputDescriptions">Start Address</div></label>
               <input ref={startAddress} placeholder="Start Address" />
             </Form.Field>
 
             <Form.Field>
-              <label>End Address</label>
+              <label class="formInputDescriptions"><div class="formInputDescriptions">End Address</div></label>
               <input ref={endAddress} placeholder="End Address" />
             </Form.Field>
 
@@ -141,7 +141,7 @@ const EventForm = () => {
               onChange={handleChange}
             />
             <p className={`m-0 ${characterCount === 280 ? "text-error" : ""}`}>
-              Character Count: {characterCount}/280
+            <div class="formInputDescriptions">Character Count: {characterCount}/280</div>
               {/* {error && <span className="ml-2">Something went wrong...</span>} */}
             </p>
             <DelayLink delay={2000} to="/">

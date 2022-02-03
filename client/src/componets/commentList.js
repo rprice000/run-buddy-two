@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 // import { useMutation } from '@apollo/client';
 // import { UPDATE_COMMENT } from '../utils/mutations'
+import { Container } from 'semantic-ui-react'
 
 const CommentList = ({ comments }) => {
   // const [updateComment] = useMutation(UPDATE_COMMENT);
@@ -21,22 +22,23 @@ const CommentList = ({ comments }) => {
 
 
   return (
-    <div className="card mb-3">
-      <div className="card-header">
-        <span className="text-light">Comments</span>
-      </div>
-      <div className="card-body">
+    <Container>
+      {/* <div>
+        <span class="commentText">Comments</span>
+      </div> */}
+      <div>
         {comments &&
           comments.map(comment => (
-            <p className="pill mb-3" key={comment._id}>
-              {comment.commentBody} {'// '}
+            <p key={comment._id}>
               <Link to={`/profile/${comment.username}`} style={{ fontWeight: 700 }}>
-                {comment.username} on {comment.createdAt}
+               <div class="commentText"> {comment.username} on {comment.createdAt}</div>
               </Link>
+              <br></br>
+              <div class="commentText">{comment.commentBody}</div>
             </p>
           ))}
       </div>
-    </div>
+    </Container>
   );
 };
 
