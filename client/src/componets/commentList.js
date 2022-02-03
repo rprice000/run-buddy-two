@@ -1,7 +1,25 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+// import { useMutation } from '@apollo/client';
+// import { UPDATE_COMMENT } from '../utils/mutations'
 
 const CommentList = ({ comments }) => {
+  // const [updateComment] = useMutation(UPDATE_COMMENT);
+
+  // const handleChange = async (event) => {
+  //   event.preventDefault();
+
+  // //   try {
+  // //     await updateComment({
+  // //       variables: { commentBody }
+  // //     });
+  // //   }
+  // //   catch (e) {
+  // //     console.error(e)
+  // //   }
+  // // };
+
+
   return (
     <div className="card mb-3">
       <div className="card-header">

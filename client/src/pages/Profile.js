@@ -20,7 +20,7 @@ const Profile = (props) => {
         variables: { username: userParam },
       });
   // const { loading, data } = useQuery(QUERY_ME_BASIC);
-    const user = data?.me || data?.user || {};
+    const user = data?.user || data?.me || {};
     console.log(data)
     console.log(user)
    // redirect to personal profile page if username is yours

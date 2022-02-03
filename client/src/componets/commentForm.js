@@ -53,6 +53,7 @@ const CommentForm = ({ eventId }) => {
         <button className="btn col-12 col-md-3" type="submit">
           Submit
         </button>
+       
       </form>
 
       {error && <div>Something went wrong...</div>}

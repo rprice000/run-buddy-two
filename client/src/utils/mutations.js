@@ -82,19 +82,14 @@ export const ADD_COMMENT = gql`
   }
 `;
 
-export const UPDATE_COMMENT = gql`
-  mutation updateComment($commentId: ID!, $commentBody: String!) {
-    updateComment(commentId: $commentId, commentBody: $commentBody) {
-      _id
-      comments {
-        _id
-        commentBody
-        createdAt
-        username
-      }
-    }
-  }
-`;
+// export const UPDATE_COMMENT = gql`
+//   mutation updateComment($commentId: ID!, $commentBody: String!) {
+//     updateComment(commentId: $commentId, commentBody: $commentBody) {
+//       _id
+//       commentBody
+//     }
+//   }
+// `;
 
 
 export const ADD_ATTENDEE = gql`
