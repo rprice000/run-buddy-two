@@ -31,21 +31,14 @@ const resolvers = {
     users: async () => {
       return User.find()
         .select('-__v -password')
-        .populate('attendees')
         .populate('events');
     },
     // get a user by username
     user: async (parent, { username }) => {
+      console.log(username);
       return User.findOne({ username })
         .select('-__v -password')
-        .populate('attendees')
         .populate('events');
-    },
-
-    checkout: async (parent, args, context) => {
-      const donation = new Donation({ donation: args.donation });
-      const updatedEvent = await Event.findByIdAndUpdate({ _id: args.event_id }, { $push: { donations: donation._id } })
-      // const { donation } = await order.populate('donation').execPopulate();
     }
   },
   Mutation: {
