@@ -106,37 +106,31 @@ const resolvers = {
 
       throw new AuthenticationError('You need to be logged in!');
     },
-    // removeEvent: async (parent, args) => {
-    //   const event = await Event.findByIdAndUpdate(
-    //     { _id: eventId },
-    //     function (err, docs) {
-    //       if (err) {
-    //         console.log(err)
-    //       }
-    //       else {
-    //         console.log("Deleted User : ", docs);
-    //       }
-    //     });
-
-    //   return event;
-    //},
-    updateComment: async (parent, {commentId, commentBody}) => {
-      const comment = await Comment.findByIdAndUpdate(
-        { _id: commentId},
-        { comments: commentBody },
-        { new:true }
-      );
-      return comment;
-
+    removeEvent: async (parent, { eventId }, context) => {
+      if (context.user) {
+        console.log(eventId)
+        const event = await User.findByIdAndUpdate(
+          { _id: context.user._id },
+          { $pull: { events: eventId} },
+          { new: true }
+        );
+        const deletedEvent = await Event.findOneAndDelete(
+          {_id: eventId}
+        )
+        return event;
+      }
     }
-    // async updateComment(_, { input: { commentBody } }, context) {
-    //   return context.updateComment({ commentId: commentBody });
-    // }
   }
 };
 
-
-
+// updateComment: async (parent, {commentId, commentBody}) => {
+//   const comment = await Comment.findByIdAndUpdate(
+//     { _id: commentId},
+//     { comments: commentBody },
+//     { new:true }
+//   );
+//   return comment;
+//}
 
 // updateEvent: async (parent, args, context) => {
 //   if (context.user) {
@@ -147,17 +141,7 @@ const resolvers = {
 
 
 
-// deleteEvent: async (parent, args, context) => {
-//   if (context.user) {
-//     const event = await User.findByIdAndUpdate(
-//       { _id: context.user._id },
-//       { $pull: { events:  args.event._id  }},
-//       { new: true }
-//     );
-//     return event;
-//   }
-//   throw new AuthenticationError('You need to be logged in!');
-// },
+
 
 // addComment: async (parent, { eventId, commentBody }, context) => {
 //   if (context.user) {
