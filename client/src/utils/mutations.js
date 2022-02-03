@@ -86,12 +86,7 @@ export const UPDATE_COMMENT = gql`
   mutation updateComment($commentId: ID!, $commentBody: String!) {
     updateComment(commentId: $commentId, commentBody: $commentBody) {
       _id
-      comments {
-        _id
-        commentBody
-        createdAt
-        username
-      }
+      commentBody
     }
   }
 `;

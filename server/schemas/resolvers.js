@@ -136,8 +136,12 @@ const resolvers = {
       return comment;
 
     }
+    // async updateComment(_, { input: { commentBody } }, context) {
+    //   return context.updateComment({ commentId: commentBody });
+    // }
   }
 };
+
 
 
 
