@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-
+import { Button } from 'semantic-ui-react'
 
 const AttendeeList = ({ attendees }) => {
   if (!attendees || !attendees.length) {
@@ -12,9 +12,9 @@ const AttendeeList = ({ attendees }) => {
     <div>
       
       {attendees.map(attendee => (
-        <button key={attendee._id}>
+        <Button key={attendee._id}>
           <Link to={`/profile/${attendee.username}`}>{attendee.username}</Link>
-        </button>
+        </Button>
       ))}
     </div>
   );

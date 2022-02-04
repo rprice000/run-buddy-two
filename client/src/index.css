@@ -90,7 +90,8 @@ code {
 
 #profileView {
   margin:0;
-  height: 575px;
+  /* height: 1000px; */
+  height: 100vh;
   background-size: cover;
   padding-top: 30px;
   padding-bottom: 30px;
