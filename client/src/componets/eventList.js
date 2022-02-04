@@ -8,7 +8,7 @@ import { Card, Container, Grid  } from 'semantic-ui-react'
 const EventList = ({ events,pagePath, title }) => {
   
   if (!events.length) {
-    return <h3>No Events Yet</h3>;
+    return <Container><h3 id="noEvents">No Events Yet</h3></Container>;
   }
 
   return (

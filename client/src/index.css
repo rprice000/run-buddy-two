@@ -192,3 +192,12 @@ code {
 #attendingEvent {
   color: var(--fifth-color);
 }
+
+#attendList {
+  padding-bottom: 10px;
+}
+
+#noEvents {
+  color: var(--fifth-color);
+  padding-top: 25px;
+}
